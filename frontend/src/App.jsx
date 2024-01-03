@@ -1,14 +1,11 @@
+import Footer from "./components/Footer";
+import Navbar from "./components/Navbar";
 
-import './App.css'
-
-function App() {
-
-
+export default function App() {
   return (
-   <div className='text-3xl  font-bold underline'>
-    Hello World!
-   </div>
+    <>
+  <Navbar/>
+  <Footer/>
+    </>
   )
 }
-
-export default App
