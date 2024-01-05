@@ -1,11 +1,17 @@
-import Footer from "./components/Footer";
-import Navbar from "./components/Navbar";
 
-export default function App() {
+import './App.css'
+import Footer from './components/Footer/Footer'
+import Navbar from './components/Navbar/Navbar'
+
+function App() {
+ 
+
   return (
-    <>
-  <Navbar/>
-  <Footer/>
-    </>
+    <div className='flex flex-col justify-evenly '>
+     <Navbar/>
+     <Footer/>
+    </div>
   )
 }
+
+export default App
