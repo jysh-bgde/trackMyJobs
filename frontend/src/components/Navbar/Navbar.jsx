@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Navbar = () => {
+    const isAuthenticated = false;
   return (
    <nav className='flex flex-row justify-around text-lg items-center'>
     <div>
@@ -15,10 +16,17 @@ const Navbar = () => {
                 <li><a href="#">Services</a></li>
             </ul>
         </div>
+        {isAuthenticated ? (<>
         <div className='flex flex-row gap-2'>
+            <a href='#' >Profile</a>
+            <button type="button" className='bg-green-500 px-3 font-semibold rounded text-white'>Logout</button>
+        </div></>):(<>
+            <div className='flex flex-row gap-2'>
             <button type="button" className=' px-3 border-green-500 border-solid border-2 font-semibold rounded' >Login</button>
             <button type="button" className='bg-green-500 px-3 font-semibold rounded text-white'>Register</button>
         </div>
+        </>)}
+        
     </div>
    </nav>
   )
