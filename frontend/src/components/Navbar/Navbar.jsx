@@ -13,7 +13,7 @@ const Navbar = () => {
                 <li className='text-green-500 font-semibold'><a href="#">Home</a></li>
                 <li><a href="#">About</a></li>
                 <li><a href="#">Blogs</a></li>
-                <li><a href="#">Services</a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div>
         {isAuthenticated ? (<>
