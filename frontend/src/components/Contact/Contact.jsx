@@ -5,7 +5,7 @@ const Contact = () => {
     const isAuthenticated = false;
   return (
     <div className='flex justify-center items-center'>
-        <div className='border-2 rounded-md p-3'>
+        <div className='border-2 rounded-md p-3 bg-white my-3'>
             <form>
                 {isAuthenticated ? (<></>) : (<div className='flex justify-center items-center' >
 

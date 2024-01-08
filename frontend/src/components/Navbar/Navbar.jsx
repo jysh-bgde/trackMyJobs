@@ -3,7 +3,7 @@ import React from 'react'
 const Navbar = () => {
     const isAuthenticated = false;
   return (
-   <nav className='flex flex-row justify-around text-lg items-center'>
+   <nav className='flex flex-row justify-around text-lg items-center bg-white'>
     <div>
         <a href='#'><img src='vite.svg' alt='Track My Job Logog'></img></a>
     </div>

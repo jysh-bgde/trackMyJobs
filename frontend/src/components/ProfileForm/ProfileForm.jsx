@@ -3,9 +3,9 @@ import React, { useState } from 'react'
 const ProfileForm = () => {
     const [isEditButtonClicked, setIsEditButtonClicked] = useState(false)
     return (
-        <div>
-
-            <form className='flex flex-col'>
+        <div className='flex justify-center items-center'>
+            <div className='bg-white my-3 p-3 border-2 rounded-md'>
+            <form className='flex flex-col items-start'>
 
                 <div>
                     <label htmlFor='firstName' >First Name:</label>
@@ -45,7 +45,10 @@ const ProfileForm = () => {
                     <input type="text" name="country" id="country" required />
                 </div>
 
-                {isEditButtonClicked ? (<button type='button' onClick={() => { setIsEditButtonClicked(!isEditButtonClicked) }}> Save </button>) : (<button type='button' onClick={() => { setIsEditButtonClicked(!isEditButtonClicked) }}>Edit</button>)}
+                {isEditButtonClicked ? (<button 
+                className='bg-green-500 self-end px-3 rounded-md ' type='button' onClick={() => { setIsEditButtonClicked(!isEditButtonClicked) }}> Save </button>) : (<button 
+                className='border-green-500 self-end px-3 rounded-md border-2'
+                type='button' onClick={() => { setIsEditButtonClicked(!isEditButtonClicked) }}>Edit</button>)}
                 {/* <label htmlFor="currentlyWorkingAt">Currently working at:</label>
             <input name='currentlyWorkingAt' id='currentlyWorkingAt'/>
 
@@ -54,6 +57,7 @@ const ProfileForm = () => {
 
 
             </form>
+            </div>
         </div>
     )
 }
