@@ -1,6 +1,7 @@
 
 import './App.css'
 import About from './components/About/About'
+import AddJobForm from './components/AddJobForm/AddJobForm'
 import Cards from './components/Cards/Cards'
 import Contact from './components/Contact/Contact'
 import Dashboard from './components/Dashboard/Dashboard'
@@ -22,7 +23,8 @@ function App() {
       {/* <About/> */}
       {/* <ProfileForm/> */}
      {/* <Cards /> */}
-     <Dashboard/>
+     {/* <Dashboard/> */}
+     <AddJobForm/>
       <Footer />
     </div>
   )

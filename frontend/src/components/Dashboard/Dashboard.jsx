@@ -66,13 +66,16 @@ const Dashboard = () => {
     ]
 
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex justify-between items-start'>
+        
+    <div className='flex flex-col justify-center items-center w-full mx-3'>
        { dummyJobsData.map((job) => (
-        <div key = {job.id} className={`p-3 my-3 ${job.jobStatus==0 ? ("bg-white") :(job.jobStatus==-1?("bg-red-400"):(job.jobStatus==1 ? ("bg-yellow-400"):("bg-green-400")))}  border-2 rounded-md`} >
+        <div key = {job.id} className={`p-3 w-full my-3 ${job.jobStatus==0 ? ("bg-white") :(job.jobStatus==-1?("bg-red-200"):(job.jobStatus==1 ? ("bg-yellow-200"):("bg-green-200")))}  border-2 rounded-md`} >
             <h1 className='text-3xl'>{job.jobTitle}</h1>
             <h2 className='text-2xl border-b-2 border-green-500'>{job.company}</h2>
             <p><b>Job Status :</b> {job.jobStatus}</p>
-            <p><b>Company Website :</b> {job.companyWebsite}</p>
+           <p> <a href={job.companyWebsite} ><b>Company Website :</b> {job.companyWebsite}</a></p>
+            
             <p><b>Applied on Date : </b>{job.appliedOnDate}</p>
             <p><b>applied where?: </b> {job.appliedWhere}</p>
             <p><b>Job Salary:</b>{job.jobSalary}</p>
@@ -82,6 +85,8 @@ const Dashboard = () => {
         </div>
        ))}
     </div>
+    <a href='#' className='m-3 p-3 bg-green-500 border-2 rounded-md text-white font-semibold'>Add job</a>
+       </div>
   )
 }
 
