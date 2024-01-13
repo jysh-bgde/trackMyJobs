@@ -1,24 +1,25 @@
 import React from 'react'
+import {Link, NavLink} from 'react-router-dom'
 
 const Navbar = () => {
     const isAuthenticated = false;
   return (
    <nav className='flex flex-row justify-around text-lg items-center bg-white'>
     <div>
-        <a href='#'><img src='vite.svg' alt='Track My Job Logog'></img></a>
+        <NavLink to='/'><img src='vite.svg' alt='Track My Job Logog'></img></NavLink>
     </div>
     <div className='flex flex-row gap-3'>
         <div className='flex flex-row'>
             <ul className='flex flex-row gap-2'>
-                <li className='text-green-500 font-semibold'><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Blogs</a></li>
-                <li><a href="#">Contact</a></li>
+                <li ><NavLink className={({isActive}) => `${isActive ? "text-green-500" : ""}` } to="/">Home</NavLink></li>
+                <li><NavLink className={({isActive}) => `${isActive ? "text-green-500" : ""}` }  to="about">About</NavLink></li>
+                <li><NavLink className={({isActive}) => `${isActive ? "text-green-500" : ""}` }  to="blogs">Blogs</NavLink></li>
+                <li><NavLink className={({isActive}) => `${isActive ? "text-green-500" : ""}` }  to="contact">Contact</NavLink></li>
             </ul>
         </div>
         {isAuthenticated ? (<>
         <div className='flex flex-row gap-2'>
-            <a href='#' >Profile</a>
+            <NavLink to='profile' >Profile</NavLink>
             <button type="button" className='bg-green-500 px-3 font-semibold rounded text-white'>Logout</button>
         </div></>):(<>
             <div className='flex flex-row gap-2'>

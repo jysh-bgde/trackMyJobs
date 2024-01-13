@@ -23,8 +23,8 @@ function App() {
       {/* <About/> */}
       {/* <ProfileForm/> */}
      {/* <Cards /> */}
-     {/* <Dashboard/> */}
-     <AddJobForm/>
+     <Dashboard/>
+     {/* <AddJobForm/> */}
       <Footer />
     </div>
   )

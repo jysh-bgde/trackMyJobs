@@ -71,9 +71,17 @@ const Dashboard = () => {
     <div className='flex flex-col justify-center items-center w-full mx-3'>
        { dummyJobsData.map((job) => (
         <div key = {job.id} className={`p-3 w-full my-3 ${job.jobStatus==0 ? ("bg-white") :(job.jobStatus==-1?("bg-red-200"):(job.jobStatus==1 ? ("bg-yellow-200"):("bg-green-200")))}  border-2 rounded-md`} >
+            <div className={`flex justify-between items-center border-b-2 ${job.jobStatus==0 ? ("border-gray-500") :(job.jobStatus==-1?("border-red-500"):(job.jobStatus==1 ? ("border-yellow-500"):("border-green-500")))}`}>
+                <div>
             <h1 className='text-3xl'>{job.jobTitle}</h1>
-            <h2 className='text-2xl border-b-2 border-green-500'>{job.company}</h2>
-            <p><b>Job Status :</b> {job.jobStatus}</p>
+            <h2 className='text-2xl'>{job.company}</h2>
+                </div>
+            <div>
+            <button type='button' className='border-2 bg-white text-green-800 font-medium rounded-md px-3 mx-3'>Edit</button>
+            <button type='button' className='border-2 bg-red-500 text-white rounded-md px-3 font-medium mx-3'>Delete</button>
+            </div>
+            </div>
+            <p><b>Job Status :</b> {job.jobStatus==0 ? ("Applied") :(job.jobStatus==-1?("Rejected"):(job.jobStatus==1 ? ("Ongoing"):("Accepted")))}</p>
            <p> <a href={job.companyWebsite} ><b>Company Website :</b> {job.companyWebsite}</a></p>
             
             <p><b>Applied on Date : </b>{job.appliedOnDate}</p>
