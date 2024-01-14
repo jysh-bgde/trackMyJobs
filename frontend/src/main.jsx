@@ -9,6 +9,8 @@ import About from './components/About/About.jsx'
 import Contact from './components/Contact/Contact.jsx'
 import ProfileForm from './components/ProfileForm/ProfileForm.jsx'
 import LoginForm from './components/LoginForm/LoginForm.jsx'
+import RegisterForm from './components/RegisterForm/RegisterForm.jsx'
+import Blogs from './components/Blogs/Blogs.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -19,8 +21,8 @@ const router = createBrowserRouter(
       <Route path='/contact' element={<Contact/>} />
       <Route path='/profile' element={<ProfileForm/> } />
       <Route path='/login' element={<LoginForm/> } />
-      {/* <Route path='/register' element={<RegisterForm/> } /> */}
-      {/* <Route path='/blogs' element={<Blogs/>} /> */}
+      <Route path='/register' element={<RegisterForm/> } />
+      <Route path='/blogs' element={<Blogs/>} />
 
     </Route>
   )

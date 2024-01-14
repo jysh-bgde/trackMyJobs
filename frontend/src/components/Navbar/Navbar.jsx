@@ -23,8 +23,8 @@ const Navbar = () => {
             <button type="button" className='bg-green-500 px-3 font-semibold rounded text-white'>Logout</button>
         </div></>):(<>
             <div className='flex flex-row gap-2'>
-            <button type="button" className=' px-3 border-green-500 border-solid border-2 font-semibold rounded' >Login</button>
-            <button type="button" className='bg-green-500 px-3 font-semibold rounded text-white'>Register</button>
+            <NavLink to="/login" className=' px-3 border-green-500 border-solid border-2 font-semibold rounded' >Login</NavLink>
+            <NavLink to="/register" className='bg-green-500 px-3 font-semibold rounded text-white'>Register</NavLink>
         </div>
         </>)}
         
