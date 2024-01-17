@@ -4,17 +4,17 @@ import {Link, NavLink} from 'react-router-dom'
 const Navbar = () => {
     const isAuthenticated = false;
   return (
-   <nav className='flex flex-row justify-around text-lg items-center bg-white'>
+   <nav className='flex flex-1 flex-row justify-around text-lg items-center bg-white'>
     <div>
-        <NavLink to='/'><img src='vite.svg' alt='Track My Job Logog'></img></NavLink>
+        <NavLink to='/'><span className='text-2xl'>Track my Job</span></NavLink>
     </div>
     <div className='flex flex-row gap-3'>
         <div className='flex flex-row'>
             <ul className='flex flex-row gap-2'>
-                <li ><NavLink className={({isActive}) => `${isActive ? "text-green-500" : ""}` } to="/">Home</NavLink></li>
-                <li><NavLink className={({isActive}) => `${isActive ? "text-green-500" : ""}` }  to="about">About</NavLink></li>
-                <li><NavLink className={({isActive}) => `${isActive ? "text-green-500" : ""}` }  to="blogs">Blogs</NavLink></li>
-                <li><NavLink className={({isActive}) => `${isActive ? "text-green-500" : ""}` }  to="contact">Contact</NavLink></li>
+                <li ><NavLink className={({isActive}) => `${isActive ? "text-green-600 font-semibold" : "hover:text-green-500"}` } to="/">Home</NavLink></li>
+                <li><NavLink className={({isActive}) => `${isActive ? "text-green-600 font-semibold" : "hover:text-green-500"}` }  to="about">About</NavLink></li>
+                <li><NavLink className={({isActive}) => `${isActive ? "text-green-600 font-semibold" : "hover:text-green-500"}` }  to="blogs">Blogs</NavLink></li>
+                <li><NavLink className={({isActive}) => `${isActive ? "text-green-600 font-semibold" : "hover:text-green-500"}` }  to="contact">Contact</NavLink></li>
             </ul>
         </div>
         {isAuthenticated ? (<>

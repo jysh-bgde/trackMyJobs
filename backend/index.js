@@ -1,6 +1,6 @@
 require("dotenv").config()
-import express from "express";
-app.use(express.static('dist'))
+const express = require("express")
+
 
 const app = express()
 const port = process.env.PORT | 3000;
