@@ -6,6 +6,8 @@ const RegisterForm = () => {
     <div className='bg-white my-3 p-3 border-2 rounded-md'>
         <form >
 
+          
+
             <div className='p-3 flex justify-between'>
                 <label htmlFor="email">Email:</label>
                 <input className='border-2 rounded-md mx-3' type="email" name='email' id='email'/>

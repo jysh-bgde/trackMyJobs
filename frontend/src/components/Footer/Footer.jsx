@@ -18,7 +18,7 @@ const Footer = () => {
           <div className='flex flex-col'>
             <label htmlFor='emailFooter'>Subscribe to know latest updates:</label>
             <div >
-            <input className='border-2 rounded-md mx-3 px-2' placeholder='Email' type="email" name="emailFooter" id="emailFooter" />
+            <input className='border-2 rounded-md px-2' placeholder='Email' type="email" name="emailFooter" id="emailFooter" />
             <button type='button' className='bg-green-500 px-3 py-1 mx-3 font-semibold rounded text-white'  >Subscribe</button>
 
             </div>

@@ -19,7 +19,7 @@ const Contact = () => {
                 </div>
                 
                 <div>
-                    <button className='bg-green-500 px-3 rounded-md' >Submit</button>
+                <button  className='bg-green-500 px-3 py-1 font-semibold rounded text-white' type='submit' >Submit</button>
                 </div>
             </form>
         </div>
