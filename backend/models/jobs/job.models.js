@@ -26,11 +26,16 @@ const jobSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    jobResume:{
-        type:String
-    },
-    jobCoverLetter:{
-        type: String
+    // jobResume:{
+    //     type:String
+    // },
+    // jobCoverLetter:{
+    //     type: String
+    // },
+    jobStatus: {
+        type: String,
+        enum: ["Applied", "In Process", "Rejected","Accepted"],
+        default: "Applied"
     }
 },{timestamps:true})
 
