@@ -1,6 +1,11 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
+import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 
 const jobSchema = new mongoose.Schema({
+    user:{
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "User"
+    },
     jobTitle:{
         type: String,
         required: true,
@@ -38,5 +43,8 @@ const jobSchema = new mongoose.Schema({
         default: "Applied"
     }
 },{timestamps:true})
+
+
+jobSchema.plugin(mongooseAggregatePaginate)
 
 export const Job = mongoose.model("Job", jobSchema)
