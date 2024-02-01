@@ -1,7 +1,8 @@
 //for async await and try catch functions
 
 const asyncHandler = (requestHandler) =>{
-    (req, res, next)=>{
+   //higher order functions - return is important
+    return (req, res, next)=>{
         Promise.resolve(requestHandler(req, res, next)).catch((err)=>{next(err)})
     }
 }
