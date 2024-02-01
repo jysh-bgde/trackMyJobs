@@ -9,6 +9,11 @@ const RegisterForm = () => {
           
 
             <div className='p-3 flex justify-between'>
+                <label htmlFor="userName">UserName:</label>
+                <input className='border-2 rounded-md mx-3' type="text" name='userName' id='userName'/>
+            </div>
+
+            <div className='p-3 flex justify-between'>
                 <label htmlFor="email">Email:</label>
                 <input className='border-2 rounded-md mx-3' type="email" name='email' id='email'/>
             </div>
