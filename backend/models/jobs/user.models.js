@@ -86,7 +86,8 @@ const userSchema = new mongoose.Schema({
 
     },
     displayPictureUrl:{
-        type: String, //cloudinary
+        type: String,
+         //cloudinary
     },
     coverImageUrl:{
         type: String, //cloudinary

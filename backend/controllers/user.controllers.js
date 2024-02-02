@@ -1,3 +1,4 @@
+import {ApiResponse} from '../utilities/ApiResponse.js'
 import {asyncHandler} from '../utilities/asyncHandler.js';
 import { ApiError } from "../utilities/ApiError.js";
 import { User } from "../models/jobs/user.models.js";
@@ -42,6 +43,31 @@ const coverImageLocalPath =  req.files?.coverImage[0]?.path
     if (!displayPictureLocalPath) {
         throw new ApiError(400, "display picture is required")
     }
+
+   const displayPicture =  await uploadOnCloudinary(displayPictureLocalPath)
+   const coverImage = await uploadOnCloudinary(coverImageLocalPath)
+
+   //throw error if dp or coverImage is null
+   const user = await User.create({
+    fullName,
+    email,
+    userName: userName.toLowerCase(),
+    password, 
+   })
+
+   const createdUser = await User.findById(user._id).select(
+    "-password -refreshToken"
+   )
+
+   if(!createdUser)
+   {
+    throw new ApiError(500, "Something went wrong while registering the user")
+   }
+
+   return res.status(201).json(
+    new ApiResponse(200,createdUser, "User registered successfully" )
+   )
+
 })
 
 export {
