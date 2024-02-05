@@ -93,15 +93,15 @@ const coverImageLocalPath =  req.files?.coverImage[0]?.path
 
 const loginUser = asyncHandler(async (req, res) => {
   //take username or email and passowrd from Frontend
-  const {userName, email,  password} = req.body
-  if(!userName && !email)
+  const {email,  password} = req.body
+  if(!email)
   {
-    throw new ApiError(400, "username or email is required")
+    throw new ApiError(400, "email is required")
   }
 
   //check if email/username exist
     const user = await User.findOne({
-      $or: [{userName}, {email}] 
+     email:email
     })
   
     if(!user)
@@ -110,9 +110,9 @@ const loginUser = asyncHandler(async (req, res) => {
     }
     //if it exists then check if password is correct or not
     
-    const isPassowrdValid = await user.isPasswordCorrect(password)
+    const isPasswordValid = await user.isPasswordCorrect(password)
     
-      if(!isPassowrdValid)
+      if(!isPasswordValid)
       {
         throw new ApiError(401, "Invalid User Credentials")
       }

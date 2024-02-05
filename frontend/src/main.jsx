@@ -11,6 +11,7 @@ import ProfileForm from './components/ProfileForm/ProfileForm.jsx'
 import LoginForm from './components/LoginForm/LoginForm.jsx'
 import RegisterForm from './components/RegisterForm/RegisterForm.jsx'
 import Blogs from './components/Blogs/Blogs.jsx'
+import Dashboard from './components/Dashboard/Dashboard.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -23,6 +24,7 @@ const router = createBrowserRouter(
       <Route path='/login' element={<LoginForm/> } />
       <Route path='/register' element={<RegisterForm/> } />
       <Route path='/blogs' element={<Blogs/>} />
+      <Route path='/dashboard' element={<Dashboard/>} />
 
     </Route>
   )
