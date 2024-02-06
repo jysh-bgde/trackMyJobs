@@ -1,6 +1,8 @@
 import React, { useState } from 'react'
 import PopUp from '../PopUp/PopUp'
-import {redirect} from "react-router-dom"
+import {redirect, useNavigate} from "react-router-dom"
+import axios from 'axios'
+
 
 const LoginForm = () => {
 
@@ -8,9 +10,10 @@ const LoginForm = () => {
     const [password, setPassword] = useState("")
     const [showModal, setShowModal] = useState(false)
     const [modalBodyMessage, setModalBodyMessage] = useState("")
+    const navigate = useNavigate()
 
     async function handleLogin(e)
-    {
+    {   e.preventDefault()
         //check if email or password is correct
         if(!email || !password)
         {   
@@ -23,13 +26,16 @@ const LoginForm = () => {
            password
         })
 
+        
         setModalBodyMessage(response.data.message)
-        setShowModal(!showModal)   
+        // setShowModal(!showModal)   
         
         //if incorrect show modal for incorrect password or email
-        if(response.data.success)
+
+        if(response.data.success==true)
         {   
-            redirect("/dashboard")
+            //redirect not working, use useNavigate 
+           return navigate("/dashboard")
         }
         //if correct show dashboard
     }

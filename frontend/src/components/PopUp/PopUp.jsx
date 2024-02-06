@@ -1,3 +1,4 @@
+import { Button, Modal } from 'flowbite-react'
 import React from 'react'
 
 const PopUp = ({showModal, setShowModal, bodyMessage}) => {

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import { Alert, Button, Modal } from 'flowbite-react'
 import { HiInformationCircle } from 'react-icons/hi';
 import axios from 'axios';
-import { redirect } from "react-router-dom";
+import { redirect, useNavigate } from "react-router-dom";
 import PopUp from '../PopUp/PopUp';
 
 // function PopUp({showModal, setShowModal, bodyMessage}){
@@ -36,13 +36,13 @@ const RegisterForm = () => {
     const [firstName, setFirstName] = useState("")
     const [lastName, setLastName] = useState("")
    // const [fullName, setFullName] = useState("")
-    const [dob, setDob] = useState("")
+    const [dateOfBirth, setDateOfBirth] = useState("")
     const [showModal, setShowModal] = useState(false)
     //const [modalHeaderMessage, setModalHeaderMessage] = useState("")
     const [modalBodyMessage, setModalBodyMessage] = useState("")
 
     //const route = useroute
-
+const navigate = useNavigate()
 
     async function  handleSubmit(e){
         e.preventDefault();
@@ -60,7 +60,10 @@ const RegisterForm = () => {
         const response = await axios.post("/api/v1/users/register",{
             userName,
             email,
-            password
+            password,
+            firstName,
+            lastName,
+            dateOfBirth,
           })
           setModalBodyMessage(response.data.message)
         setShowModal(!showModal)   
@@ -70,7 +73,7 @@ const RegisterForm = () => {
            // route to login page
         if(response.data.success)
         {
-            return redirect("/login");
+            return navigate("/login");
         }
     }
 
@@ -89,8 +92,8 @@ const RegisterForm = () => {
             </div>
 
             <div className='p-3 flex items-center justify-between'>
-                <label htmlFor="dob">Date of Birth:</label>
-                <input className='border-2 rounded-md mx-3' type="date" name='dob' value={dob} id='dob' onChange={(e) => setDob(e.target.value)}/>
+                <label htmlFor="dateOfBirth">Date of Birth:</label>
+                <input className='border-2 rounded-md mx-3' type="date" name='dateOfBirth' value={dateOfBirth} id='dob' onChange={(e) => setDateOfBirth(e.target.value)}/>
             </div>
 
             <div className='p-3 flex  items-center justify-between'>

@@ -10,9 +10,10 @@ const generateAccessAndRefreshTokens = async (userId) =>{
     
     const user = await User.findById(userId)
     
-    const accessToken = user.generateAccessToken()
+    const accessToken =  user.generateAccessToken()
     const refreshToken = user.generateRefreshToken()
     
+    // console.log(accessToken, refreshToken, "1")
     user.refreshToken = refreshToken
     user.accessToken = accessToken
       
@@ -41,11 +42,13 @@ const registerUser = asyncHandler( async(req, res) => {
     //return user data after saving to database 
 
     //TODO: create required inputs in frontend
-  const {fullName, firstName,middleName, lastName, userName, dateOfBirth, email, password,bio, gender, address, displayPictureUrl, coverImageUrl ,about}=  req.body
-  console.log("email: ", email);
+  console.log(req.body)
+    const {firstName, lastName, userName, dateOfBirth, email, password}=  req.body
 
+
+  const fullName = firstName + " " + lastName;
   if(
-    [fullName, email, firstName, middleName, lastName, userName , dateOfBirth, password].some((field)=> field?.trim()==="" )
+    [fullName, email, firstName, lastName, userName , dateOfBirth, password].some((field)=> field?.trim()==="" )
   ){
     throw new ApiError(400, "All fields are required")
   }
@@ -58,7 +61,7 @@ if(existedUser){
     throw new ApiError(409, "User already exists")
 }
 
-const displayPictureLocalPath =  req.files?.displayPicture[0]?.path
+/*const displayPictureLocalPath =  req.files?.displayPicture[0]?.path
 const coverImageLocalPath =  req.files?.coverImage[0]?.path
 
     if (!displayPictureLocalPath) {
@@ -67,6 +70,7 @@ const coverImageLocalPath =  req.files?.coverImage[0]?.path
 
    const displayPicture =  await uploadOnCloudinary(displayPictureLocalPath)
    const coverImage = await uploadOnCloudinary(coverImageLocalPath)
+*/
 
    //throw error if dp or coverImage is null
    const user = await User.create({
@@ -74,6 +78,9 @@ const coverImageLocalPath =  req.files?.coverImage[0]?.path
     email,
     userName: userName.toLowerCase(),
     password, 
+    firstName,
+    lastName,
+    dateOfBirth
    })
 
    const createdUser = await User.findById(user._id).select(

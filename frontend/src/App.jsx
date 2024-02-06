@@ -18,13 +18,7 @@ function App() {
   return (
     <div className='flex flex-col bg-slate-50'>
       <Navbar />
-      {/* <LoginForm/> */}
-      {/* <Contact/> */}
-      {/* <About/> */}
-      {/* <ProfileForm/> */}
-     {/* <Cards /> */}
-     <Dashboard/>
-     {/* <AddJobForm/> */}
+     
       <Footer />
     </div>
   )

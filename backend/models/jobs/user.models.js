@@ -2,6 +2,8 @@ import mongoose from "mongoose"
 // import Job from "./job.models.js"
 import jwt from "jsonwebtoken"
 import bcrypt from "bcrypt"
+import dotenv from "dotenv"
+dotenv.config()
 
 
 const userSchema = new mongoose.Schema({
@@ -124,9 +126,9 @@ userSchema.methods.isPasswordCorrect = async function (password) {
     return await bcrypt.compare(password, this.password)
 }
 
-userSchema.methods.generateAccessToken = function () {
+userSchema.methods.generateAccessToken =  function () {
     
-    return jwt.sign({
+    const accessToken =  jwt.sign({
         _id: this._id,
         email: this.email,
         userName: this.userName,
@@ -138,20 +140,21 @@ userSchema.methods.generateAccessToken = function () {
     }
     )
 
-
+    return accessToken
 }
 
-userSchema.methods.generateRefreshToken = function () {
+userSchema.methods.generateRefreshToken =  function () {
     
-    return jwt.sign({
+    const refreshToken =  jwt.sign({
         _id: this._id,
      
     },
-    process.env.ACCESS_REFRESH_SECRET,
+    process.env.REFRESH_TOKEN_SECRET,
     {
-        expiresIn: process.env.ACCESS_REFRESH_EXPIRY
+        expiresIn: process.env.REFRESH_TOKEN_EXPIRY
     }
     )
+    return refreshToken
 }
 
 
