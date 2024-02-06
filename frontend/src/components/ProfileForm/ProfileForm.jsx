@@ -4,45 +4,47 @@ const ProfileForm = () => {
     const [isEditButtonClicked, setIsEditButtonClicked] = useState(false)
     return (
         <div className='flex justify-center items-center'>
-            <div className='bg-white my-3 p-3 border-2 rounded-md'>
-            <form className='flex flex-col items-start'>
-
-                <div>
+            <div  className=' bg-white my-3 p-3 border-2 rounded-md'>
+            <form >
+                <div className='p-3 flex justify-between items-center'>
+                    <img className='border-2 rounded-md mx-3' src="displayPictureSample.png" alt="display picture" height={128} width={128}/>
+                </div>
+                <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='firstName' >First Name:</label>
-                    <input type="text" name="firstName" id="firstName" required />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="firstName" id="firstName" required />
                 </div>
 
-                <div>
+                <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='middleName'>Middle Name:</label>
-                    <input type="text" name="middleName" id="middleName" />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="middleName" id="middleName" />
                 </div>
-                <div>
+                <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='lastName' >Last Name:</label>
-                    <input type="text" name="lastName" id="lastName" required />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="lastName" id="lastName" required />
                 </div>
-                <div>
+                <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="dob">Date of Birth:</label>
-                    <input type="date" name="dob" id="dob" required />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="date" name="dob" id="dob" required />
                 </div>
-                <div>
+                <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="addressLine1">Address Line 1</label>
-                    <textarea name="addressLine1" id="addressLine1" required />
+                    <textarea className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} name="addressLine1" id="addressLine1" required />
                 </div>
-                <div>
+                <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="addressLine2">Address Line 2</label>
-                    <textarea name="addressLine2" id="addressLine2" required />
+                    <textarea className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} name="addressLine2" id="addressLine2" required />
                 </div>
-                <div>
+                <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="city">City</label>
-                    <input type="text" name="city" id="city" required />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="city" id="city" required />
                 </div>
-                <div>
+                <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="state">State</label>
-                    <input type="text" name="state" id="state" required />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="state" id="state" required />
                 </div>
-                <div>
+                <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="country">Country</label>
-                    <input type="text" name="country" id="country" required />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="country" id="country" required />
                 </div>
 
                 {isEditButtonClicked ? (<button 
