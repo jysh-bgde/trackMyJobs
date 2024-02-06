@@ -1,7 +1,11 @@
-import React, { useState } from 'react'
+import React, { useState, useContext } from 'react'
+import UserContext from '../../context/UserContext'
 
 const ProfileForm = () => {
     const [isEditButtonClicked, setIsEditButtonClicked] = useState(false)
+
+    const {user, setUser} = useContext(UserContext)
+    console.log(user)
     return (
         <div className='flex justify-center items-center'>
             <div  className=' bg-white my-3 p-3 border-2 rounded-md'>

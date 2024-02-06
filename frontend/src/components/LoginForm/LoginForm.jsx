@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+import React, { useState , useContext} from 'react'
 import PopUp from '../PopUp/PopUp'
 import {redirect, useNavigate} from "react-router-dom"
 import axios from 'axios'
+import UserContext from '../../context/UserContext'
 
 
 const LoginForm = () => {
@@ -10,7 +11,10 @@ const LoginForm = () => {
     const [password, setPassword] = useState("")
     const [showModal, setShowModal] = useState(false)
     const [modalBodyMessage, setModalBodyMessage] = useState("")
+
     const navigate = useNavigate()
+
+    const {setUser} = useContext(UserContext)
 
     async function handleLogin(e)
     {   e.preventDefault()
@@ -35,6 +39,7 @@ const LoginForm = () => {
         if(response.data.success==true)
         {   
             //redirect not working, use useNavigate 
+            setUser(response.data.data.user)
            return navigate("/dashboard")
         }
         //if correct show dashboard
