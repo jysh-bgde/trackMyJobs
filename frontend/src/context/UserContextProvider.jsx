@@ -2,7 +2,8 @@ import React, { useState } from "react"
 import UserContext from "./UserContext"
 
 const UserContextProvider = ({children}) => {
-    const [user, setUser] = useState(localStorage.getItem("user"))
+    //change default state of user to Object
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
     return (
         <UserContext.Provider value = {{user, setUser}}>
         {children}
