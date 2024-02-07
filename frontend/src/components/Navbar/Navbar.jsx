@@ -1,8 +1,30 @@
-import React from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import {Link, NavLink} from 'react-router-dom'
+import UserContext from '../../context/UserContext'
 
 const Navbar = () => {
-    const isAuthenticated = false;
+    
+    //console.log(user)
+    
+   const [isAuthenticated, setIsAuthenticated] = useState(false)
+
+  
+
+    const {user} = useContext(UserContext)
+    useEffect(() => {
+        //console.log(user)
+        if(user)
+    {
+       setIsAuthenticated(true)
+    }
+    else
+    {
+        setIsAuthenticated(false)
+    }
+    
+     
+    }, [user])
+    
   return (
    <nav className='flex flex-1 flex-row justify-around text-lg items-center bg-white'>
     <div>

@@ -5,6 +5,7 @@ import axios from 'axios'
 import UserContext from '../../context/UserContext'
 
 
+
 const LoginForm = () => {
 
     const [email, setEmail] = useState("")
@@ -39,7 +40,10 @@ const LoginForm = () => {
         if(response.data.success==true)
         {   
             //redirect not working, use useNavigate 
-            setUser(response.data.data.user)
+            const user = response.data.data.user
+            setUser(user)
+            
+            
            return navigate("/dashboard")
         }
         //if correct show dashboard
