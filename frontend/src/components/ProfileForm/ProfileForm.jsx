@@ -1,5 +1,6 @@
 import React, { useState, useContext, useEffect } from 'react'
 import UserContext from '../../context/UserContext'
+import axios from "axios"
 
 const ProfileForm = () => {
     const [isEditButtonClicked, setIsEditButtonClicked] = useState(false)
@@ -8,26 +9,30 @@ const ProfileForm = () => {
 
        
     
-    console.log(user)
 
     //create handleProfileSave Function
-    function handleProfileSave(e){
+   async function handleProfileSave(e){
         //preventDefault
         e.preventDefault()
-
+        console.log(user)
         //post req to /api/v1/users/updateAccountDetails with necessary details
-       const response =  axios.post("/api/v1/users/updateAccountDetails", {
-
+       const response =  await axios.post("/api/v1/users/updateAccountDetails", {
+       firstName: user.firstName,
+       lastName: user.lastName,
+       middleName: user.middleName,
+       dateOfBirth: user.dateOfBirth,
+       address: user.address,
         })
 
         //show modal message
-        setModalBodyMessage(response.data.message)
-
+        //setModalBodyMessage(response.data.message)
         if(response.data.success)
         {
-           
+            
+            console.log(response.data.data)
             // update user using context
-            setUser(response.data.data.user)
+           sessionStorage.setItem("user", JSON.stringify(response.data.data))
+            setUser(response.data.data)
         }
     }
 
@@ -41,24 +46,24 @@ const ProfileForm = () => {
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='firstName' >First Name:</label>
-                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="firstName" id="firstName" required value={user.firstName}/>
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="firstName" id="firstName" required value={user.firstName} onChange={(e) =>setUser({...user, firstName: e.target.value}) }/>
                 </div>
 
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='middleName'>Middle Name:</label>
-                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="middleName" id="middleName" value={user.middleName} />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="middleName" id="middleName" value={user.middleName} onChange={(e) =>setUser({...user, middleName: e.target.value}) } />
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='lastName' >Last Name:</label>
-                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="lastName" id="lastName" required value={user.lastName}/>
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="lastName" id="lastName" required value={user.lastName} onChange={(e) =>setUser({...user, lastName: e.target.value}) }/>
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="dob">Date of Birth:</label>
-                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="date" name="dob" id="dob" required value={user.dateOfBirth} />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="date" name="dob" id="dob" required value={user.dateOfBirth} onChange={(e) =>setUser({...user, dateOfBirth: e.target.value}) }/>
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="address">Address:</label>
-                    <textarea className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} name="address" id="address" required value={user.address} />
+                    <textarea className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} name="address" id="address" required value={user.address} onChange={(e) =>setUser({...user, address: e.target.value}) } />
                 </div>
               
 

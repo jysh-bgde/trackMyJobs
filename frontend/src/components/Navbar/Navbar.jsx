@@ -10,7 +10,6 @@ const Navbar = () => {
    const {user} = useContext(UserContext) 
    
     useEffect(() => {
-        console.log(user)
         if(user)
     {
        setIsAuthenticated(true)
