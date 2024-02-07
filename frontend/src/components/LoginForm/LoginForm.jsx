@@ -41,6 +41,8 @@ const LoginForm = () => {
         {   
             //redirect not working, use useNavigate 
             const user = response.data.data.user
+            //store in local storage so that user data is saved even on refresh
+            localStorage.setItem("user", JSON.stringify(user))
             setUser(user)
             
             

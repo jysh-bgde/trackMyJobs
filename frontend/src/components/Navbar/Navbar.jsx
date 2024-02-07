@@ -4,15 +4,13 @@ import UserContext from '../../context/UserContext'
 
 const Navbar = () => {
     
-    //console.log(user)
+
     
    const [isAuthenticated, setIsAuthenticated] = useState(false)
-
-  
-
-    const {user} = useContext(UserContext)
+   const {user} = useContext(UserContext) 
+   
     useEffect(() => {
-        //console.log(user)
+        console.log(user)
         if(user)
     {
        setIsAuthenticated(true)
