@@ -7,7 +7,7 @@ const Navbar = () => {
 
     
    const [isAuthenticated, setIsAuthenticated] = useState(false)
-   const {user} = useContext(UserContext) 
+   const {user, setUser} = useContext(UserContext) 
    
     useEffect(() => {
         if(user)
@@ -21,6 +21,13 @@ const Navbar = () => {
     
      
     }, [user])
+
+    function handleLogout()
+    {
+        sessionStorage.removeItem("user")
+        setUser(null)
+        
+    }
     
   return (
    <nav className='flex flex-1 flex-row justify-around text-lg items-center bg-white'>
@@ -39,7 +46,7 @@ const Navbar = () => {
         {isAuthenticated ? (<>
         <div className='flex flex-row gap-2'>
             <NavLink to='profile' >Profile</NavLink>
-            <button type="button" className='bg-green-500 px-3 font-semibold rounded text-white'>Logout</button>
+            <button onClick={handleLogout} type="button" className='bg-green-500 px-3 font-semibold rounded text-white'>Logout</button>
         </div></>):(<>
             <div className='flex flex-row gap-2'>
             <NavLink to="/login" className=' px-3 border-green-500 border-solid border-2 font-semibold rounded' >Login</NavLink>

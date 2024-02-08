@@ -84,7 +84,7 @@ const ProfileForm = () => {
                     {isChangeDisplayPictureButtonClicked ? (
                     <>
                     
-                    <input accept="image/png, image/jpeg" onChange={(e) => {setDisplayPicture(e.target.files[0])}}  className="" type='file' name='displayPicture' />
+                    <input accept="image/png, image/jpeg" onChange={(e) => {setDisplayPicture(e.target.files[0])}}   type='file' name='displayPicture' />
                     
                     <button className='bg-green-500 self-end px-3 rounded-md'  onClick={(e) => {setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked), handleDisplayImageSave(e)} }>Save </button>
                     </>) :(
