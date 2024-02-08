@@ -54,7 +54,7 @@ const LoginForm = () => {
   return (
     <div className='flex flex-col justify-center items-center'>
         <div className='flex flex-col border-2 rounded-md p-3  bg-white my-3'>
-            {showModal ? (<PopUp showModal ={showModal} bodyMessage={modalBodyMessage} setShowModal = {setShowModal}/>) : (<form>
+            {showModal ? (<PopUp showModal ={showModal} bodyMessage={modalBodyMessage} setShowModal = {setShowModal}/>) : (<form enctype="multipart/form-data">
                 <div className='p-3 flex justify-between items-center '>
                     <label htmlFor="email">Email:</label>
                     <input className='border-2 rounded-md mx-3' type="email" value = {email} name='email' id='email' onChange={(e)=>setEmail(e.target.value)}/>

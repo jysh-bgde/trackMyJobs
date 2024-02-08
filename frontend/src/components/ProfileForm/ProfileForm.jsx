@@ -1,11 +1,46 @@
 import React, { useState, useContext, useEffect } from 'react'
 import UserContext from '../../context/UserContext'
 import axios from "axios"
+import { useRef } from 'react'
 
 const ProfileForm = () => {
     const [isEditButtonClicked, setIsEditButtonClicked] = useState(false)
+    const [isChangeDisplayPictureButtonClicked, setIsChangeDisplayPictureButtonClicked] = useState(false)
+    const [displayPicture, setDisplayPicture] = useState()
 
     const {user, setUser} = useContext(UserContext)
+    //const displayPictureInput = useRef()
+    //   create function to save display picture
+   async function handleDisplayImageSave(e){
+        e.preventDefault()
+        const formData = new FormData()
+        formData.append("displayPicture", displayPicture)
+
+      
+        // console.log(displayPicture)
+        
+
+        //     when change display picture is clicked button changes to save display picture
+        //     input field appears to select image
+        //     after clicking save, post via axios to save image in user data
+          const response = await axios.post("/api/v1/users/update-display-picture", formData,{
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+          })
+          console.log(response)
+          //     get response, save in session storage and save user using setUser
+          sessionStorage.setItem("user", JSON.stringify(response.data.data))
+          
+          setUser(response.data.data)
+          //     display display picture
+    }
+
+
+
+
+
+    
 
        
     
@@ -39,10 +74,24 @@ const ProfileForm = () => {
     return (
         <div className='flex justify-center items-center'>
             <div  className=' bg-white my-3 p-3 border-2 rounded-md'>
-            <form >
+            <form  >
                 <div className='p-3 flex justify-between items-center'>
-                    <img className='border-2 rounded-md mx-3' src="displayPictureSample.png" alt="display picture" height={128} width={128}/>
-                    <button  className='border-green-500 self-end px-3 rounded-md border-2'>change display picture </button>
+                    
+                    <img className='border-2 rounded-md mx-3' src={user.displayPictureUrl || "displayPictureSample.png"} alt="display picture" height={128} width={128}/>
+                    <div>
+
+                    
+                    {isChangeDisplayPictureButtonClicked ? (
+                    <>
+                    
+                    <input accept="image/png, image/jpeg" onChange={(e) => {setDisplayPicture(e.target.files[0])}}  className="" type='file' name='displayPicture' />
+                    
+                    <button className='bg-green-500 self-end px-3 rounded-md'  onClick={(e) => {setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked), handleDisplayImageSave(e)} }>Save </button>
+                    </>) :(
+                    <button  className='border-green-500 self-end px-3 rounded-md border-2' onClick={(e) => {setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked)} }>change display picture </button>)}
+
+                    </div>
+                    
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='firstName' >First Name:</label>

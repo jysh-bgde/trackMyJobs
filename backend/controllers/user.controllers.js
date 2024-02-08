@@ -257,9 +257,10 @@ const updateAccountDetails = asyncHandler(async(req, res)=>{
 
 
 const updateUserDisplayPicture = asyncHandler(async(req, res)=> {
-  const avatarLocalPath = req.file?.path
+ // console.log(1, req.file)
+  const displayPictureLocalPath = req.file.path
 
-  if(!avatarLocalPath){
+  if(!displayPictureLocalPath){
     throw new ApiError(400, "Display picture file is missing")
   }
 
@@ -279,7 +280,7 @@ const updateUserDisplayPicture = asyncHandler(async(req, res)=> {
     ,{new: true}).select("-password")
 
     
-    return res.status(200).json(new ApiResponse(200, "Display picture updated succesfully"))
+    return res.status(200).json(new ApiResponse(200,user, "Display picture updated succesfully"))
 
 
 })
