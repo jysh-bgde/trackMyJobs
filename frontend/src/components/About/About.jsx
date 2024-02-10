@@ -1,16 +1,17 @@
 import React from 'react'
+import {Card} from "flowbite-react"
 
 const About = () => {
     return (
         <div className='flex justify-center items-center p-3'>
-        <div className='text-xl container flex flex-col justify-center p-3 border-2 rounded-lg bg-white my-3 '>
+        <Card className='text-xl container flex flex-col justify-center p-3 border-2 rounded-lg bg-white my-3 '>
             
             <h1 className='text-3xl font-bold'>
                  <span className='text-green-500 '>About Track My Job</span>
             </h1>
             <br />
             <p>
-                <b className='text-green-500 font-bold'>We believe the job hunt shouldn't be a wild goose chase.</b> It should be a strategic, organized sprint toward landing your dream career. That's why we built Track My Job: a powerful tool to <b className='text-green-500 font-bold'>streamline your search, conquer chaos, and land your next big opportunity.</b>
+                <b className='text-green-500 font-bold'>We believe the job hunt shouldn't be a wild goose chase.</b> It should be a strategic, organized sprint toward landing your dream career. That's why we built <span className='font-semibold text-green-500'>Track My Job</span>: a powerful tool to <b className='text-green-500 font-bold'>streamline your search, conquer chaos, and land your next big opportunity.</b>
 
             </p>
             <br />
@@ -61,7 +62,7 @@ const About = () => {
             </p>
 
 <br />
-            </div>
+            </Card>
         </div>
     )
 }

@@ -1,3 +1,4 @@
+import { Button, Card, Label, TextInput, Textarea } from 'flowbite-react';
 import React from 'react'
 
 const Contact = () => {
@@ -5,24 +6,25 @@ const Contact = () => {
     const isAuthenticated = false;
   return (
     <div className='flex justify-center items-center'>
-        <div className='border-2 rounded-md p-3 bg-white my-3'>
+        <Card className='border-2 rounded-md p-3 bg-white my-3'>
             <form>
-                {isAuthenticated ? (<></>) : (<div className='flex justify-center items-center' >
+                {isAuthenticated ? (<></>) : (
+                <div className='flex justify-center items-center' >
 
-                <label htmlFor="email">Enter your email here:</label>
-                <input className='border-2 rounded-md mx-3' type='email' name="email" id="email"/>
+                <Label htmlFor="email" >Enter your email here:</Label>
+                <TextInput type='email' name="email" id="email"/>
                 </div>)}
                 
-                <div className='flex flex-col'>
-                <label htmlFor="message">Enter your message here:</label>
-                <textarea className='border-2 rounded-md my-3' name="message" id="message" cols="30" rows="10"></textarea>
+                <div className='flex flex-col my-2'>
+                <Label htmlFor="message">Enter your message here:</Label>
+                <Textarea className='border-2 rounded-md my-3' name="message" id="message" cols="30" rows="10"></Textarea>
                 </div>
                 
                 <div>
-                <button  className='bg-green-500 px-3 py-1 font-semibold rounded text-white' type='submit' >Submit</button>
+                <Button color="success" type='submit' >Submit</Button>
                 </div>
             </form>
-        </div>
+        </Card>
     </div>
   )
 }

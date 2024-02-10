@@ -1,62 +1,64 @@
-import React, { useContext, useEffect, useState } from 'react'
-import {Link, NavLink} from 'react-router-dom'
+import { Button, ButtonGroup, Navbar } from 'flowbite-react';
+import { useContext, useEffect, useState } from 'react';
+import {NavLink, useNavigate} from 'react-router-dom'
 import UserContext from '../../context/UserContext'
 
-const Navbar = () => {
-    
 
-    
-   const [isAuthenticated, setIsAuthenticated] = useState(false)
-   const {user, setUser} = useContext(UserContext) 
-   
-    useEffect(() => {
-        if(user)
-    {
-       setIsAuthenticated(true)
-    }
-    else
-    {
-        setIsAuthenticated(false)
-    }
-    
+function Navbar2() {
+
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const {user, setUser} = useContext(UserContext) 
+    const navigate = useNavigate()
+     useEffect(() => {
+         if(user)
+     {
+        setIsAuthenticated(true)
+     }
+     else
+     {
+         setIsAuthenticated(false)
+     }
      
-    }, [user])
+      
+     }, [user])
+ 
+     function handleLogout()
+     {
+         sessionStorage.removeItem("user")
+         setUser(null)
+         navigate("/")
+         
+     }
 
-    function handleLogout()
-    {
-        sessionStorage.removeItem("user")
-        setUser(null)
-        
-    }
-    
+
+
   return (
-   <nav className='flex flex-1 flex-row justify-around text-lg items-center bg-white'>
-    <div>
-        <NavLink to='/'><span className='text-2xl'>Track my Job</span></NavLink>
-    </div>
-    <div className='flex flex-row gap-3'>
-        <div className='flex flex-row'>
-            <ul className='flex flex-row gap-2'>
-                <li ><NavLink className={({isActive}) => `${isActive ? "text-green-600 font-semibold" : "hover:text-green-500"}` } to="/">Home</NavLink></li>
-                <li><NavLink className={({isActive}) => `${isActive ? "text-green-600 font-semibold" : "hover:text-green-500"}` }  to="about">About</NavLink></li>
-                <li><NavLink className={({isActive}) => `${isActive ? "text-green-600 font-semibold" : "hover:text-green-500"}` }  to="blogs">Blogs</NavLink></li>
-                <li><NavLink className={({isActive}) => `${isActive ? "text-green-600 font-semibold" : "hover:text-green-500"}` }  to="contact">Contact</NavLink></li>
-            </ul>
-        </div>
-        {isAuthenticated ? (<>
-        <div className='flex flex-row gap-2'>
-            <NavLink to='profile' >Profile</NavLink>
-            <button onClick={handleLogout} type="button" className='bg-green-500 px-3 font-semibold rounded text-white'>Logout</button>
-        </div></>):(<>
-            <div className='flex flex-row gap-2'>
-            <NavLink to="/login" className=' px-3 border-green-500 border-solid border-2 font-semibold rounded' >Login</NavLink>
-            <NavLink to="/register" className='bg-green-500 px-3 font-semibold rounded text-white'>Register</NavLink>
-        </div>
-        </>)}
-        
-    </div>
-   </nav>
-  )
+    <Navbar fluid rounded>
+      <Navbar.Brand href="/" >
+        <img src="tmjLogoBgWhite.png" className="mr-3 h-6 sm:h-9" alt="Track My Job Logo" />
+        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Track My Jobs</span>
+      </Navbar.Brand>
+      {isAuthenticated ? ( <div className='flex items-center md:order-2'>
+            <NavLink to='profile' className="mx-2" >Profile</NavLink>
+            <Button onClick={handleLogout} color="success" type="button" >Logout</Button>
+            <Navbar.Toggle />
+        </div>) : ( <div className="flex md:order-2">
+        <Button className='mx-2' color="success"> <NavLink to="/login" >Login</NavLink></Button>
+        <Button outline color='success'><NavLink to="/register" >Register</NavLink></Button>
+        <Navbar.Toggle />
+      </div>) }
+      
+      <Navbar.Collapse>
+        <NavLink to="/" className="hover:text-green-600 font-semibold">
+          Home
+        </NavLink>
+        <NavLink to="/about" className="hover:text-green-600 font-semibold">About</NavLink>
+        <NavLink to="/blogs" className="hover:text-green-600 font-semibold">Blogs</NavLink>
+        <NavLink to="/contact" className="hover:text-green-600 font-semibold">Contact</NavLink>
+        {isAuthenticated ? ( <NavLink to="/dashboard" className="hover:text-green-600 font-semibold">Dashboard</NavLink>) : ("")}
+      </Navbar.Collapse>
+    </Navbar>
+  );
 }
 
-export default Navbar
+export default Navbar2

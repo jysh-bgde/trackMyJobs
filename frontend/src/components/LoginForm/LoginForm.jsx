@@ -3,6 +3,7 @@ import PopUp from '../PopUp/PopUp'
 import {redirect, useNavigate} from "react-router-dom"
 import axios from 'axios'
 import UserContext from '../../context/UserContext'
+import { Button, Label, TextInput, Card } from 'flowbite-react'
 
 
 
@@ -53,25 +54,26 @@ const LoginForm = () => {
 
   return (
     <div className='flex flex-col justify-center items-center'>
-        <div className='flex flex-col border-2 rounded-md p-3  bg-white my-3'>
-            {showModal ? (<PopUp showModal ={showModal} bodyMessage={modalBodyMessage} setShowModal = {setShowModal}/>) : (<form>
-                <div className='p-3 flex justify-between items-center '>
-                    <label htmlFor="email">Email:</label>
-                    <input className='border-2 rounded-md mx-3' type="email" value = {email} name='email' id='email' onChange={(e)=>setEmail(e.target.value)}/>
+        <Card className='flex flex-col border-2 rounded-md p-3  bg-white my-3'>
+            {showModal ? (<PopUp showModal ={showModal} bodyMessage={modalBodyMessage} setShowModal = {setShowModal}/>) : (
+            <form className="flex max-w-md flex-col gap-4">
+                <div className='p-3 flex justify-evenly items-center '>
+                    <Label  htmlFor="email">Email:</Label>
+                    <TextInput className='mx-2'  type="email" value = {email} name='email' id='email' onChange={(e)=>setEmail(e.target.value)}/>
                 </div>
 
-                <div className='p-3 flex justify-between items-center'>
-                    <label htmlFor="password">Password:</label>
-                    <input className='border-2 rounded-md mx-3' type="password" name='password' id='password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
+                <div className='p-3 flex justify-evenly items-center'>
+                    <Label  htmlFor="password">Password:</Label>
+                    <TextInput className='mx-2' type="password" name='password' id='password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
                 </div>
 
                 <div className='p-3 '>
 
-                <button type='submit' className='bg-green-500 px-3 py-1 font-semibold rounded text-white' onClick={handleLogin}>Login</button>
+                <Button type='submit' color='success' onClick={handleLogin}>Login</Button>
                 </div>
             </form>)}
             
-        </div>
+        </Card>
     </div>
   )
 }
