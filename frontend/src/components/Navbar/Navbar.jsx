@@ -35,11 +35,11 @@ function Navbar2() {
   return (
     <Navbar fluid rounded>
       <Navbar.Brand href="/" >
-        <img src="tmjLogoBgWhite.png" className="mr-3 h-6 sm:h-9" alt="Track My Job Logo" />
+        <img src="tmjLogoBgWhite.png" className="mr-3 h-6 sm:h-9 object-cover" alt="Track My Job Logo" />
         <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Track My Jobs</span>
       </Navbar.Brand>
       {isAuthenticated ? ( <div className='flex items-center md:order-2'>
-            <NavLink to='profile' className="mx-2" >Profile</NavLink>
+            <NavLink to='profile' className="mx-2 hover:text-green-600 font-semibold" >Profile</NavLink>
             <Button onClick={handleLogout} color="success" type="button" >Logout</Button>
             <Navbar.Toggle />
         </div>) : ( <div className="flex md:order-2">

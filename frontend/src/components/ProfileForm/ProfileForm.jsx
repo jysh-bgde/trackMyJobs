@@ -1,7 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react'
 import UserContext from '../../context/UserContext'
 import axios from "axios"
-import { useRef } from 'react'
+import { useNavigate } from 'react-router-dom'
 
 const ProfileForm = () => {
     const [isEditButtonClicked, setIsEditButtonClicked] = useState(false)
@@ -9,6 +9,25 @@ const ProfileForm = () => {
     const [displayPicture, setDisplayPicture] = useState()
 
     const {user, setUser} = useContext(UserContext)
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const navigate = useNavigate()
+
+    useEffect(() => {
+
+      if(user)
+      {
+        setIsAuthenticated(true)
+      }
+      else
+      {
+        setIsAuthenticated(false)
+        navigate("/error")
+      }
+      
+    }, [isAuthenticated, user])
+    
+
+
     //const displayPictureInput = useRef()
     //   create function to save display picture
    async function handleDisplayImageSave(e){
@@ -70,14 +89,15 @@ const ProfileForm = () => {
             setUser(response.data.data)
         }
     }
-
+    
     return (
+        
         <div className='flex justify-center items-center'>
-            <div  className=' bg-white my-3 p-3 border-2 rounded-md'>
+            <div  className='bg-white my-3 p-3 border-2 rounded-md'>
             <form  >
                 <div className='p-3 flex justify-between items-center'>
                     
-                    <img className='border-2 rounded-md mx-3' src={user.displayPictureUrl || "displayPictureSample.png"} alt="display picture" height={128} width={128}/>
+                    <img className='border-2 rounded-md mx-3' src={user?.displayPictureUrl || "displayPictureSample.png"} alt="display picture" height={128} width={128}/>
                     <div>
 
                     
@@ -95,24 +115,24 @@ const ProfileForm = () => {
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='firstName' >First Name:</label>
-                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="firstName" id="firstName" required value={user.firstName} onChange={(e) =>setUser({...user, firstName: e.target.value}) }/>
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="firstName" id="firstName" required value={user?.firstName} onChange={(e) =>setUser({...user, firstName: e.target.value}) }/>
                 </div>
 
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='middleName'>Middle Name:</label>
-                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="middleName" id="middleName" value={user.middleName} onChange={(e) =>setUser({...user, middleName: e.target.value}) } />
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="middleName" id="middleName" value={user?.middleName} onChange={(e) =>setUser({...user, middleName: e.target.value}) } />
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='lastName' >Last Name:</label>
-                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="lastName" id="lastName" required value={user.lastName} onChange={(e) =>setUser({...user, lastName: e.target.value}) }/>
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="text" name="lastName" id="lastName" required value={user?.lastName} onChange={(e) =>setUser({...user, lastName: e.target.value}) }/>
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="dob">Date of Birth:</label>
-                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="date" name="dob" id="dob" required value={user.dateOfBirth} onChange={(e) =>setUser({...user, dateOfBirth: e.target.value}) }/>
+                    <input className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} type="date" name="dob" id="dob" required value={user?.dateOfBirth} onChange={(e) =>setUser({...user, dateOfBirth: e.target.value}) }/>
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor="address">Address:</label>
-                    <textarea className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} name="address" id="address" required value={user.address} onChange={(e) =>setUser({...user, address: e.target.value}) } />
+                    <textarea className='border-2 rounded-md mx-3' disabled={!isEditButtonClicked} name="address" id="address" required value={user?.address} onChange={(e) =>setUser({...user, address: e.target.value}) } />
                 </div>
               
 

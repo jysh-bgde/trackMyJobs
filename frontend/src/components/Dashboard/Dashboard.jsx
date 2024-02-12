@@ -1,6 +1,29 @@
-import React from 'react'
-
+import React, { useContext, useEffect, useState} from 'react'
+import UserContext from '../../context/UserContext'
+import { Link, useNavigate } from 'react-router-dom'
+import { Button } from 'flowbite-react'
 const Dashboard = () => {
+
+    const {user} = useContext(UserContext)
+    
+    const navigate = useNavigate()        
+    //create state isAuthenticated to  check if user is authenticated
+    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    useEffect(() => {
+        //if aythenticated display component else error component
+        if(user)
+        {
+            setIsAuthenticated(true)
+        }
+        else
+        {
+            setIsAuthenticated(false)
+            navigate("/error")
+        }
+    
+     
+    }, [isAuthenticated, user])
+    
 
     const dummyJobsData = [
         {
@@ -93,7 +116,10 @@ const Dashboard = () => {
         </div>
        ))}
     </div>
-    <a href='#' className='m-3 p-3 bg-green-500 border-2 rounded-md text-white font-semibold'>Add job</a>
+        <Button color='success' className='m-3 p-3 font-semibold'>
+
+    <Link to='/addJob' >Add Job</Link>
+        </Button>
        </div>
   )
 }

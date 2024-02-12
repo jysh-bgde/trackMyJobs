@@ -7,7 +7,7 @@ const Cards = () => {
   return (
     <>
     <div className='flex flex-col justify-center items-center'>
-    <div className='flex justify-center items-center gap-3 px-2'>
+    <div className='flex justify-stretch items-center gap-3 p-2 flex-wrap w-full'>
       <FreeCard/>
       <PremiumCard/>
     </div>
