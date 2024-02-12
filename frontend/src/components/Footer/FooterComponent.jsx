@@ -1,12 +1,17 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
+import React, { useContext, useEffect, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 import { Footer, TextInput, Button } from 'flowbite-react';
+import UserContext from "../../context/UserContext"
 
 const FooterComponent = () => {
+
+
+  
+
   return (
     <Footer container>
       <div className="w-full">
-        <div className="grid w-full justify-between sm:flex sm:justify-between md:flex md:grid-cols-1">
+        <div className="grid w-full justify-between flex-wrap sm:flex sm:justify-between md:flex md:grid-cols-1">
           <div>
             <Footer.Brand
               href="/"
@@ -15,7 +20,7 @@ const FooterComponent = () => {
               name="Track My Job"
             />
           </div>
-          <div className="grid grid-cols-2 gap-8 sm:mt-4 sm:grid-cols-3 sm:gap-6">
+          <div className="flex-wrap flex gap-8 sm:mt-4 sm:gap-6">
             <div>
               <Footer.Title title="Links" />
               <Footer.LinkGroup col>
