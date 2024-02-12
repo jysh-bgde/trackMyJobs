@@ -14,7 +14,7 @@ const PremiumCard = () => {
     <ul className="my-7 space-y-5">
       <li className="flex space-x-3">
         <svg
-          className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-500"
+          className="h-5 w-5 shrink-0 text-green-600 dark:text-green-500"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -29,7 +29,7 @@ const PremiumCard = () => {
       </li>
       <li className="flex space-x-3">
         <svg
-          className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-500"
+          className="h-5 w-5 shrink-0 text-green-600 dark:text-green-500"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -46,7 +46,7 @@ const PremiumCard = () => {
       </li>
       <li className="flex space-x-3">
         <svg
-          className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-500"
+          className="h-5 w-5 shrink-0 text-green-600 dark:text-green-500"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -61,7 +61,7 @@ const PremiumCard = () => {
       </li>
       <li className="flex space-x-3 decoration-gray-500">
       <svg
-          className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-500"
+          className="h-5 w-5 shrink-0 text-green-600 dark:text-green-500"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -76,7 +76,7 @@ const PremiumCard = () => {
       </li>
       <li className="flex space-x-3 decoration-gray-500">
       <svg
-          className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-500"
+          className="h-5 w-5 shrink-0 text-green-600 dark:text-green-500"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
@@ -91,7 +91,7 @@ const PremiumCard = () => {
       </li>
       <li className="flex space-x-3  decoration-gray-500">
       <svg
-          className="h-5 w-5 shrink-0 text-cyan-600 dark:text-cyan-500"
+          className="h-5 w-5 shrink-0 text-green-600 dark:text-green-500"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"

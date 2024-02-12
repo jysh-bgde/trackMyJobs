@@ -116,10 +116,12 @@ const Dashboard = () => {
         </div>
        ))}
     </div>
-        <Button color='success' className='m-3 p-3 font-semibold'>
+    <div className='flex-1'>
+        <Button color='success' className='m-3 font-semibold rounded-full'>
 
     <Link to='/addJob' >Add Job</Link>
         </Button>
+        </div>
        </div>
   )
 }

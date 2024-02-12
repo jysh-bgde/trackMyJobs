@@ -5,94 +5,56 @@ import { useNavigate } from 'react-router-dom'
 
 const AddJobForm = () => {
 
-    const {user} = useContext(UserContext)
+    const { user } = useContext(UserContext)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const navigate = useNavigate()
-  
+    //create state for job object
+    
+    const [job, setJob] = useState({
+        jobTitle: "",
+        companyName: "",
+        companyWebsite: "",
+        jobSalary: "",
+        jobMinimumExperience: "",
+        jobWorkLocation: "",
+        appliedWhere: "",
+        appliedOnDate: "",
+        jobStatus: "",
+    })    
+
+
     useEffect(() => {
-      
-      if(user)
-      {
-        setIsAuthenticated(true)
-      }
-      else
-      {
-        setIsAuthenticated(false)
-        navigate("/error")
-      }
-  
-      
+
+        if (user) {
+            setIsAuthenticated(true)
+        }
+        else {
+            setIsAuthenticated(false)
+            navigate("/error")
+        }
+
+
     }, [user])
+
+    function handleAddJobSubmit(e)
+    {   
+        e.preventDefault()
+        //onchange event on each field --done
+        //check if all fields are there in job object
+        console.log(job)
+
+        //if no, show popup or warning that all fields are required
+        //if yes, send post request to backend with all job data
+        //wait for response
+        // if response is ok show job
+        //if response is not ok show popup or /error
+
+    }
 
     return (
         <div className='flex justify-center items-center'>
             <div className='bg-white border-2 w-3/4 rounded-md my-3 px-3'>
-                {/* <form>
 
-                    <div>
-                        <label htmlFor="jobTitle">Job Title: </label>
-                        <input className='border-2 mx-3 px-3 rounded-md'  type="text" name='jobTitle' id='jobTitle' />
-                    </div>
-
-                    <div>
-                        <label htmlFor="company">Company: </label>
-                        <input className='border-2 mx-3 px-3 rounded-md'  type="text" name='company' id='company' />
-                    </div>
-
-                    <div className='flex'>
-                        <fieldset>
-
-                        <legend >Job Status: </legend>
-                        
-                        <div>
-                            <input className='border-2 mx-3 px-3 rounded-md'  type="radio" name='jobStatus' id='applied' value="applied" />
-                            <label htmlFor="applied"  >Applied</label>
-                        </div>
-
-                        <div>
-                            <input className='border-2 mx-3 px-3 rounded-md'  type="radio" name='jobStatus' id='ongoing' value="ongoing" />
-                            <label htmlFor="ongoing">ongoing</label>
-                        </div>
-
-                        <div>
-                            <input className='border-2 mx-3 px-3 rounded-md'  type="radio" name='jobStatus' id='accepted' value="accepted" />
-                            <label htmlFor="accepted">accepted</label>
-                        </div>
-                        <div>
-                            <input className='border-2 mx-3 px-3 rounded-md'  type="radio" name='jobStatus' id='rejected' value="rejected" />
-                            <label htmlFor="rejected">rejected</label>
-
-                        </div>
-                        
-                        </fieldset>
-
-                    </div>
-                    <div>
-                        <label htmlFor="companyWebsite">Company Website</label>
-                        <input className='border-2 mx-3 px-3 rounded-md'  type="text" name='companyWebsite' id='companyWebsite' />
-                    </div>
-                    <div>
-                        <label htmlFor="appliedOnDate">Applied On Date</label>
-                        <input className='border-2 mx-3 px-3 rounded-md'  type="text" name='appliedOnDate' id='appliedOnDate' />
-                    </div>
-                    <div>
-                        <label htmlFor="appliedWhere">Applied Where?</label>
-                        <input className='border-2 mx-3 px-3 rounded-md'  type="text" name='appliedWhere' id='appliedWhere' />
-                    </div>
-                    <div>
-                        <label htmlFor="jobSalary">Job Salary</label>
-                        <input className='border-2 mx-3 px-3 rounded-md'  type="text" name='jobSalary' id='jobSalary' />
-                    </div>
-                    <div>
-                        <label htmlFor="jobMinimumExperience">Job Minimum Experience</label>
-                        <input className='border-2 mx-3 px-3 rounded-md'  type="text" name='jobMinimumExperience' id='jobMinimumExperience' />
-                    </div>
-                    <div>
-                        <label htmlFor="jobWorkLocation">Job Work Location</label>
-                        <input className='border-2 mx-3 px-3 rounded-md'  type="text" name='jobWorkLocation' id='jobWorkLocation' />
-                    </div>
-
-                </form> */}
                 <form className="flex w-full flex-col gap-4 p-3">
                     <div>
                         <div className="mb-2 block">
@@ -101,7 +63,11 @@ const AddJobForm = () => {
                         <TextInput id="jobTitle"
                             type="text"
                             name='jobTitle'
-                            placeholder="Software Developer 1" required />
+                            placeholder="Software Developer 1" 
+                            value={job.jobTitle}
+                            onChange={(e) => setJob({...job, jobTitle:e.target.value})}
+                            required 
+                            />
                     </div>
 
                     <div>
@@ -111,7 +77,10 @@ const AddJobForm = () => {
                         <TextInput id="companyName"
                             type="text"
                             name='companyName'
-                            placeholder="Amazon" required />
+                            placeholder="Amazon"
+                            value={job.companyName}
+                            onChange={(e) => setJob({...job, companyName:e.target.value})}
+                            required />
                     </div>
 
                     <div>
@@ -121,7 +90,10 @@ const AddJobForm = () => {
                         <TextInput id="companyWebsite"
                             type="text"
                             name='companyWebsite'
-                            placeholder="www.amazon.com" required />
+                            placeholder="www.amazon.com" 
+                            value={job.companyWebsite}
+                            onChange={(e) => setJob({...job, companyWebsite:e.target.value})}
+                            required />
                     </div>
 
                     <div>
@@ -131,9 +103,12 @@ const AddJobForm = () => {
                         <TextInput id="jobSalary"
                             type="text"
                             name='jobSalary'
-                            placeholder="$70/hr or ₹15,00,000 LPA" required />
+                            placeholder="$70/hr or ₹15,00,000 LPA" 
+                            value={job.jobSalary}
+                            onChange={(e) => setJob({...job, jobSalary:e.target.value})}
+                            required />
                     </div>
-                    
+
 
                     <div>
                         <div className="mb-2 block">
@@ -142,7 +117,10 @@ const AddJobForm = () => {
                         <TextInput id="jobMinimumExperience"
                             type="text"
                             name='jobMinimumExperience'
-                            placeholder="2 years" required />
+                            placeholder="2 years"
+                            value={job.jobMinimumExperience}
+                            onChange={(e) => setJob({...job, jobMinimumExperience:e.target.value})}
+                            required />
                     </div>
                     <div>
                         <div className="mb-2 block">
@@ -151,7 +129,10 @@ const AddJobForm = () => {
                         <TextInput id="jobWorkLocation"
                             type="text"
                             name='jobWorkLocation'
-                            placeholder="Bengaluru, India" required />
+                            placeholder="Bengaluru, India" 
+                            value={job.jobWorkLocation}
+                            onChange={(e) => setJob({...job, jobWorkLocation:e.target.value})}
+                            required />
                     </div>
                     <div>
                         <div className="mb-2 block">
@@ -160,39 +141,44 @@ const AddJobForm = () => {
                         <TextInput id="appliedWhere"
                             type="text"
                             name='appliedWhere'
-                            placeholder="LinkedIn" required />
+                            placeholder="LinkedIn" 
+                            value={job.appliedWhere}
+                            onChange={(e) => setJob({...job, appliedWhere:e.target.value})}
+                            required />
                     </div>
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="appliedOnDate" value="Applied on date" />
                         </div>
                         <Datepicker id="appliedOnDate"
-                            type="text"
+                          
                             name='appliedOnDate'
-                         required />
+                            
+                            onChange={(e) => setJob({...job, appliedOnDate:e.target.value})}
+                            required />
                     </div>
 
                     <fieldset className="flex max-w-md flex-col gap-4">
                         <legend className="mb-4">Job Status</legend>
                         <div className="flex items-center gap-2">
-                            <Radio id="applied" name="jobStatus" value="Applied" defaultChecked />
+                            <Radio id="applied" name="jobStatus" value="Applied" defaultChecked  onClick={(e) => setJob({...job, jobStatus:e.target.value})}/>
                             <Label htmlFor="applied">Applied</Label>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Radio id="ongoing" name="jobStatus" value="Ongoing" />
+                            <Radio id="ongoing" name="jobStatus" value="Ongoing" onClick={(e) => setJob({...job, jobStatus:e.target.value})} />
                             <Label htmlFor="ongoing">Ongoing</Label>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Radio id="accepted" name="jobStatus" value="Accepted" />
+                            <Radio id="accepted" name="jobStatus" value="Accepted" onClick={(e) => setJob({...job, jobStatus:e.target.value})} />
                             <Label htmlFor="accepted">Accepted</Label>
                         </div>
                         <div className="flex items-center gap-2">
-                            <Radio id="rejected" name="jobStatus" value="Rejected" />
+                            <Radio id="rejected" name="jobStatus" value="Rejected" onClick={(e) => setJob({...job, jobStatus:e.target.value})} />
                             <Label htmlFor="rejected">Rejected</Label>
                         </div>
 
                     </fieldset>
-                <Button color='success'>Add Job</Button>
+                    <Button color='success' onClick={handleAddJobSubmit}>Add Job</Button>
                 </form>
             </div>
         </div>
