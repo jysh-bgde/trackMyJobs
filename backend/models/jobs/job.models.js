@@ -27,6 +27,11 @@ const jobSchema = new mongoose.Schema({
         required:true,
 
     },
+    companyName:{
+        type: String,
+        required:true,
+
+    },
     jobAppliedOnWebsite:{
         type: String,
         required: true,
@@ -39,8 +44,12 @@ const jobSchema = new mongoose.Schema({
     // },
     jobStatus: {
         type: String,
-        enum: ["Applied", "In Process", "Rejected","Accepted"],
-        default: "Applied"
+        default: "Applied",
+        required: true
+    },
+    jobAppliedOnDate:{
+        type: String,
+        required: true
     }
 },{timestamps:true})
 

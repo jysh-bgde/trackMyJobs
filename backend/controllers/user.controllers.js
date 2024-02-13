@@ -3,6 +3,7 @@ import {ApiResponse} from '../utilities/ApiResponse.js'
 import {asyncHandler} from '../utilities/asyncHandler.js';
 import { ApiError } from "../utilities/ApiError.js";
 import { User } from "../models/jobs/user.models.js";
+import {Job } from "../models/jobs/job.models.js";
 import { uploadOnCloudinary } from "../utilities/cloudinary.js";
 
 const generateAccessAndRefreshTokens = async (userId) =>{
@@ -309,6 +310,68 @@ const updateUserCoverImage = asyncHandler(async(req, res)=> {
     return res.status(200).json(new ApiResponse(200, "Cover Image updated succesfully"))
 })
 
+const addJob = asyncHandler(async(req, res)=>{
+  try {
+    // const user = req.user
+    const job  = req.body
+   
+    //check user exist or not
+    const user = await User.findById(req.user?._id);
+   
+    if(user)
+    { 
+      //if exist then creat new job and get its objectId
+        const jobCreated = await Job.create({
+        user: user._id,
+        jobTitle: job.jobTitle,
+        jobDescription: job.jobDescription,
+        jobLocation: job.jobWorkLocation,
+        jobSalary: job.jobSalary,
+        companyWebsite: job.companyWebsite,
+        jobAppliedOnWebsite: job.appliedWhere,
+        jobStatus: job.jobStatus,
+        jobAppliedOnDate: job.appliedOnDate,
+        companyName: job.companyName
+      })
+     
+      
+      //if failed to create job throw error
+      if(!jobCreated)
+      {
+        throw new ApiError(500, "Error while adding job")
+      }
+      user.jobsApplied.push(jobCreated._id)
+      //update this in user data
+      const updatedUser = await User.findByIdAndUpdate(user._id, 
+        {
+          $set: {
+            jobsApplied: user?.jobsApplied
+          }
+      },{new: true}).select("-password");
+
+
+      //throw error if updating user
+      if(!updatedUser)
+      {
+        throw new ApiError(500, "Error in updating user")
+      }
+  
+    //return updated user
+      return res.status(200).json(new ApiResponse(200, updatedUser, "Job Added"))
+  
+    }
+    else
+    {
+      //if user doesnt exist then throw error
+      throw new ApiError(400, "User does not exist")
+    }
+  } catch (error) {
+    
+    //if server error throw error
+    throw new ApiError(500, "Internal Server Error")
+  }
+})
+
 export {
     registerUser,
     loginUser,
@@ -318,5 +381,6 @@ export {
     getCurrentUser,
     updateAccountDetails,
     updateUserDisplayPicture,
-    updateUserCoverImage
+    updateUserCoverImage,
+    addJob
 }

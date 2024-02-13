@@ -72,7 +72,7 @@ const userSchema = new mongoose.Schema({
     premiumExpiryDate:{
         type: String,
     },
-    JobsApplied: [{
+    jobsApplied: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "Job"
         }],
