@@ -5,9 +5,10 @@ import { useNavigate } from 'react-router-dom'
 
 const AddJobForm = () => {
 
-    const { user } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const navigate = useNavigate()
+    
     //create state for job object
     
     const [job, setJob] = useState({
@@ -36,17 +37,26 @@ const AddJobForm = () => {
 
     }, [user])
 
-    function handleAddJobSubmit(e)
+    async function handleAddJobSubmit(e)
     {   
         e.preventDefault()
         //onchange event on each field --done
-        //check if all fields are there in job object
-        console.log(job)
-
-        //if no, show popup or warning that all fields are required
+        //check if all fields are there in job object --done
         //if yes, send post request to backend with all job data
         //wait for response
-        // if response is ok show job
+        const response = await axios.post("/api/v1/users/add-job", job)
+        // if response is ok, update user data and  show job
+        if(response.data.success)
+        {
+            sessionStorage.setItem("user", JSON.stringify(response.data.data))
+          
+          setUser(response.data.data)
+          navigate("/dashboard")
+        }
+        else
+        {
+            navigate("/error")
+        }
         //if response is not ok show popup or /error
 
     }
@@ -66,7 +76,8 @@ const AddJobForm = () => {
                             placeholder="Software Developer 1" 
                             value={job.jobTitle}
                             onChange={(e) => setJob({...job, jobTitle:e.target.value})}
-                            required 
+                            required
+                            
                             />
                     </div>
 
@@ -80,6 +91,7 @@ const AddJobForm = () => {
                             placeholder="Amazon"
                             value={job.companyName}
                             onChange={(e) => setJob({...job, companyName:e.target.value})}
+                            
                             required />
                     </div>
 
@@ -93,6 +105,7 @@ const AddJobForm = () => {
                             placeholder="www.amazon.com" 
                             value={job.companyWebsite}
                             onChange={(e) => setJob({...job, companyWebsite:e.target.value})}
+                           
                             required />
                     </div>
 
@@ -106,6 +119,7 @@ const AddJobForm = () => {
                             placeholder="$70/hr or ₹15,00,000 LPA" 
                             value={job.jobSalary}
                             onChange={(e) => setJob({...job, jobSalary:e.target.value})}
+                           
                             required />
                     </div>
 
@@ -120,6 +134,7 @@ const AddJobForm = () => {
                             placeholder="2 years"
                             value={job.jobMinimumExperience}
                             onChange={(e) => setJob({...job, jobMinimumExperience:e.target.value})}
+                           
                             required />
                     </div>
                     <div>
@@ -132,6 +147,7 @@ const AddJobForm = () => {
                             placeholder="Bengaluru, India" 
                             value={job.jobWorkLocation}
                             onChange={(e) => setJob({...job, jobWorkLocation:e.target.value})}
+                           
                             required />
                     </div>
                     <div>
@@ -144,18 +160,23 @@ const AddJobForm = () => {
                             placeholder="LinkedIn" 
                             value={job.appliedWhere}
                             onChange={(e) => setJob({...job, appliedWhere:e.target.value})}
+                            
                             required />
                     </div>
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="appliedOnDate" value="Applied on date" />
                         </div>
-                        <Datepicker id="appliedOnDate"
-                          
+                        <input
+                            type='date'
+                            className=' border-gray-300 rounded-lg text-gray-500 bg-gray-50 w-full'
+                            id="appliedOnDate"
+                            value={job.appliedOnDate}
                             name='appliedOnDate'
-                            
                             onChange={(e) => setJob({...job, appliedOnDate:e.target.value})}
-                            required />
+                            
+                            
+                            required/>
                     </div>
 
                     <fieldset className="flex max-w-md flex-col gap-4">
@@ -178,7 +199,7 @@ const AddJobForm = () => {
                         </div>
 
                     </fieldset>
-                    <Button color='success' onClick={handleAddJobSubmit}>Add Job</Button>
+                    <Button color='success' onSubmit={handleAddJobSubmit} type='submit'>Add Job</Button>
                 </form>
             </div>
         </div>
