@@ -5,6 +5,7 @@ import { ApiError } from "../utilities/ApiError.js";
 import { User } from "../models/jobs/user.models.js";
 import {Job } from "../models/jobs/job.models.js";
 import { uploadOnCloudinary } from "../utilities/cloudinary.js";
+import mongoose from "mongoose";
 
 const generateAccessAndRefreshTokens = async (userId) =>{
   try {
@@ -317,7 +318,7 @@ const addJob = asyncHandler(async(req, res)=>{
    
     //check user exist or not
     const user = await User.findById(req.user?._id);
-   
+    
     if(user)
     { 
       //if exist then creat new job and get its objectId
@@ -328,6 +329,7 @@ const addJob = asyncHandler(async(req, res)=>{
         jobLocation: job.jobWorkLocation,
         jobSalary: job.jobSalary,
         companyWebsite: job.companyWebsite,
+        jobMinimumExperience: job.jobMinimumExperience,
         jobAppliedOnWebsite: job.appliedWhere,
         jobStatus: job.jobStatus,
         jobAppliedOnDate: job.appliedOnDate,
@@ -341,6 +343,7 @@ const addJob = asyncHandler(async(req, res)=>{
         throw new ApiError(500, "Error while adding job")
       }
       user.jobsApplied.push(jobCreated._id)
+      
       //update this in user data
       const updatedUser = await User.findByIdAndUpdate(user._id, 
         {
@@ -421,12 +424,72 @@ const getAllJobs = asyncHandler(async(req, res)=>{
     }
     //console.log(userAppliedJobs[0].userJobsApplied)
     // return the array as response
-    res.status(200).json(new ApiResponse(200, userAppliedJobs[0].userJobsApplied, "User jobs"))
+    return res.status(200).json(new ApiResponse(200, userAppliedJobs[0].userJobsApplied, "User jobs"))
   } catch (error) {
     //throw internal server error
 
     throw new ApiError(500, "Internal server error")
   }
+
+})
+
+const deleteJob = asyncHandler(async(req, res)=>{
+
+  try {
+    //find user using req.user in users collection
+    const user = await User.findById(req.user?._id)
+ 
+    
+    //if user doesnt exist throw error
+    if(!user)
+    {
+      throw new ApiError(400, "User doesnt exist")
+    }
+    //if user exist then go to jobsApplied and delete that jobid
+    // let jobId = mongoose.Types.ObjectId(req.body.jobId)
+    // console.log(jobId)
+    let index = user.jobsApplied.indexOf(req.body.jobId)
+    
+    if(index != -1)
+    {
+      user.jobsApplied.splice(index, 1)
+    }
+    else
+    {
+      throw new ApiError(500, "Could not find job")
+    }
+    //set the jobapplied to user
+
+    const updatedUser = await User.findByIdAndUpdate(user._id, 
+      {
+        $set: {
+          jobsApplied: user?.jobsApplied
+        }
+    },{new: true}).select("-password");
+  
+    //if not updatedUser throw error
+    if(!updatedUser)
+    {
+      throw new ApiError(500, "Error while deleting job")
+    }
+    //search for job in jobs collection
+    //if job exist then delete it
+   const deletedJob =  await Job.findByIdAndDelete(req.body.jobId)
+   
+   //if job doesnt exist throw error
+   if(!deletedJob)
+    {
+      throw new ApiError(500, "Job not found in database")
+    }
+
+    return res.status(200).json(new ApiResponse(200,  updatedUser ,"Job Deleted Successfully"))
+    
+  } catch (error) {
+    //if any other error throw internal server error
+    throw new ApiError(500, "Internal Server Error")
+  }
+
+
 
 })
 
@@ -441,5 +504,6 @@ export {
     updateUserDisplayPicture,
     updateUserCoverImage,
     addJob,
-    getAllJobs
+    getAllJobs,
+    deleteJob
 }

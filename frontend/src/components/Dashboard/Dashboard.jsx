@@ -5,12 +5,14 @@ import { Button, Card } from 'flowbite-react'
 import axios from 'axios'
 const Dashboard = () => {
 
-    const {user} = useContext(UserContext)
+    const {user, setUser} = useContext(UserContext)
     
     const navigate = useNavigate()        
     //create state isAuthenticated to  check if user is authenticated
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const [jobs, setJobs] = useState([])
+    
+
     useEffect(() => {
         //if aythenticated display component else error component
         if(user)
@@ -43,6 +45,25 @@ const Dashboard = () => {
      
     }, [isAuthenticated, user])
     
+    async function handleDeleteJob(e, jobId )
+    {   
+        //call backend to delete job using axios
+        
+        const response = await axios.post("/api/v1/users/delete-job", {jobId})
+        console.log(response)
+        //if response is okay show dashboard
+        if(response.data.success)
+        {   
+            sessionStorage.setItem("user", JSON.stringify(response.data.data))
+          
+            setUser(response.data.data)
+        }
+        else
+        {
+            navigate("/error")
+        }
+        //if response not ok throw error 
+    }
 
   return (
     <div className='flex justify-between items-start'>
@@ -57,7 +78,7 @@ const Dashboard = () => {
                 </div>
             <div className='flex'>
             <Button type='button' size="sm" color='light' className='font-medium mr-2'>Edit</Button>
-            <Button type='button' size="sm" color= 'failure' className='font-medium'>Delete</Button>
+            <Button type='button' size="sm" color= 'failure' onClick={(e) => handleDeleteJob(e, job._id)} className='font-medium'>Delete</Button>
             </div>
             </div>
             <p><b>Job Status :</b> {job.jobStatus==0 ? ("Applied") :(job.jobStatus==-1?("Rejected"):(job.jobStatus==1 ? ("Ongoing"):("Accepted")))}</p>

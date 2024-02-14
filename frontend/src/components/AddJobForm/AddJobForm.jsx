@@ -42,13 +42,13 @@ const AddJobForm = () => {
     {   
         e.preventDefault()
         
-        console.log(job)
+        
         //onchange event on each field --done
         //check if all fields are there in job object --done
         //if yes, send post request to backend with all job data
         //wait for response
         const response = await axios.post("/api/v1/users/add-job", job)
-        console.log(response)
+        
         // if response is ok, update user data and  show job
         if(response.data.success)
         {
