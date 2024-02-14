@@ -372,6 +372,64 @@ const addJob = asyncHandler(async(req, res)=>{
   }
 })
 
+//to get all jobs of user
+const getAllJobs = asyncHandler(async(req, res)=>{
+
+  try {
+    //get user from req.user
+    const user = await User.findById(req.user?._id)
+    //if user doesnt exist throw error
+    if(!user)
+    {
+      throw new ApiError(400, "User does not exist")
+    }
+    //if user exist get all jobs from user.jobsApplied
+    //populate jobs and store in an array 
+    const userAppliedJobs = await User.aggregate([
+      {
+        $match:{
+          _id : user?._id
+        }
+      },
+        {
+          $lookup: {
+            from: "jobs",
+            localField: "jobsApplied",
+            foreignField: "_id",
+            as:"userJobsApplied"
+          }
+        },
+        // {
+        //   $project: {
+        //     jobTitle: 1,
+        //     jobLocation:1,
+        //     jobSalary:1,
+        //     companyWebsite:1,
+        //     companyName:1,
+        //     jobAppliedOnWebsite:1,
+        //     jobStatus:1,
+        //     jobAppliedOnDate:1
+        //   }
+        // }
+    ])
+
+   
+    //if error in populating then throw error
+    if(!userAppliedJobs)
+    {
+      throw new ApiError(400, "Error in getting jobs")
+    }
+    //console.log(userAppliedJobs[0].userJobsApplied)
+    // return the array as response
+    res.status(200).json(new ApiResponse(200, userAppliedJobs[0].userJobsApplied, "User jobs"))
+  } catch (error) {
+    //throw internal server error
+
+    throw new ApiError(500, "Internal server error")
+  }
+
+})
+
 export {
     registerUser,
     loginUser,
@@ -382,5 +440,6 @@ export {
     updateAccountDetails,
     updateUserDisplayPicture,
     updateUserCoverImage,
-    addJob
+    addJob,
+    getAllJobs
 }

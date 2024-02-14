@@ -4,9 +4,14 @@ import mongooseAggregatePaginate from "mongoose-aggregate-paginate-v2";
 const jobSchema = new mongoose.Schema({
     user:{
         type: mongoose.Schema.Types.ObjectId,
-        ref: "User"
+        ref: "User",
+        required:true
     },
     jobTitle:{
+        type: String,
+        required: true,
+    },
+    jobMinimumExperience:{
         type: String,
         required: true,
     },
