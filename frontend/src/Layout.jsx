@@ -4,18 +4,21 @@ import Footer from './components/Footer/FooterComponent'
 import { Outlet } from 'react-router-dom'
 import UserContextProvider from './context/UserContextProvider'
 import  FooterComponent  from './components/Footer/FooterComponent'
+import { Flowbite } from 'flowbite-react'
 
 
 const Layout = () => {
   return (
+    <Flowbite>
     <UserContextProvider>
-    <div className='bg-slate-50'>
+   
     <Navbar/>
+  
     <Outlet/>
     <FooterComponent/>
-    </div>
+   
     </UserContextProvider>
-    
+    </Flowbite>
   )
 }
 

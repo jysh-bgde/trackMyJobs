@@ -2,11 +2,14 @@ import React, { useState, useContext, useEffect } from 'react'
 import UserContext from '../../context/UserContext'
 import axios from "axios"
 import { useNavigate } from 'react-router-dom'
+import {Button} from 'flowbite-react'
 
 const ProfileForm = () => {
     const [isEditButtonClicked, setIsEditButtonClicked] = useState(false)
     const [isChangeDisplayPictureButtonClicked, setIsChangeDisplayPictureButtonClicked] = useState(false)
+    const [isChangeCoverImageButtonClicked, setIsChangeCoverImageButtonClicked] = useState(false)
     const [displayPicture, setDisplayPicture] = useState()
+    const [coverImage, setCoverImage] = useState()
 
     const {user, setUser} = useContext(UserContext)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -96,9 +99,10 @@ const ProfileForm = () => {
             <div  className='bg-white my-3 p-3 border-2 rounded-md'>
             <form  >
                 <div className='p-3 flex justify-between items-center'>
-                    
+                <div className='flex flex-col items-center'>
                     <img className='border-2 rounded-md mx-3' src={user?.displayPictureUrl || "displayPictureSample.png"} alt="display picture" height={128} width={128}/>
-                    <div>
+                   
+                    <div >
 
                     
                     {isChangeDisplayPictureButtonClicked ? (
@@ -106,12 +110,32 @@ const ProfileForm = () => {
                     
                     <input accept="image/png, image/jpeg" onChange={(e) => {setDisplayPicture(e.target.files[0])}}   type='file' name='displayPicture' />
                     
-                    <button className='bg-green-500 self-end px-3 rounded-md'  onClick={(e) => {setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked), handleDisplayImageSave(e)} }>Save </button>
+                    <Button color='success' className='my-1 mr-1'  onClick={(e) => {setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked), handleDisplayImageSave(e)} }>Save </Button>
                     </>) :(
-                    <button  className='border-green-500 self-end px-3 rounded-md border-2' onClick={(e) => {setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked)} }>change display picture </button>)}
+                    <Button color='success' className='my-1 mr-1'  onClick={(e) => {setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked)} }>change display picture </Button>)}
 
                     </div>
+
+                    </div>
+                    <div className='flex flex-col items-end'>
+
+                    <img className='border-2 rounded-md' src={user?.coverImageUrl || "coverImageSample.jpg"} alt="Cover Image" height={1920} width={1280}/>
+                     <div >
+                 
                     
+                    {isChangeCoverImageButtonClicked ? (
+                    <>
+                    
+                    <input accept="image/png, image/jpeg" onChange={(e) => {setCoverImage(e.target.files[0])}}   type='file' name='coverImage' />
+                    
+                    <Button color='success'   className='my-1'  onClick={(e) => {setIsChangeCoverImageButtonClicked(!isChangeCoverImageButtonClicked), handleCoverImageSave(e)} }>Save </Button>
+                    </>) :(
+                    <Button  color='success' className='my-1'  onClick={(e) => {setIsChangeCoverImageButtonClicked(!isChangeCoverImageButtonClicked)} }>change Cover Image </Button>)}
+
+                    </div>
+
+
+                    </div>
                 </div>
                 <div className='p-3 flex justify-between items-center'>
                     <label htmlFor='firstName' >First Name:</label>
