@@ -1,7 +1,7 @@
 import { Button, Checkbox, Datepicker, Label, Radio, TextInput } from 'flowbite-react'
 import React, { useContext, useEffect, useState } from 'react'
 import UserContext from '../../context/UserContext'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import axios from "axios"
 
 const AddJobForm = () => {
@@ -9,19 +9,21 @@ const AddJobForm = () => {
     const { user, setUser } = useContext(UserContext)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
     const navigate = useNavigate()
+    const {state} = useLocation();
     
     //create state for job object
     
-    const [job, setJob] = useState({
-        jobTitle: "",
-        companyName: "",
-        companyWebsite: "",
-        jobSalary: "",
-        jobMinimumExperience: "",
-        jobWorkLocation: "",
-        appliedWhere: "",
-        appliedOnDate: "",
-        jobStatus: "Applied",
+    const [job, setJob] = useState( {
+        jobId: state?.job?._id || "",
+        jobTitle: state?.job.jobTitle||"",
+        companyName: state?.job?.companyName||"",
+        companyWebsite: state?.job?.companyWebsite||"",
+        jobSalary: state?.job?.jobSalary||"",
+        jobMinimumExperience: state?.job?.jobMinimumExperience||"",
+        jobWorkLocation: state?.job?.jobLocation|| "",
+        appliedWhere: state?.job?.jobAppliedOnWebsite|| "",
+        appliedOnDate: state?.job?.jobAppliedOnDate ||"",
+        jobStatus: state?.job?.jobStatus||"Applied",
     })    
 
 
@@ -38,7 +40,7 @@ const AddJobForm = () => {
 
     }, [user])
 
-    async function handleAddJobSubmit(e)
+    async function handleJobSubmit(e)
     {   
         e.preventDefault()
         
@@ -47,6 +49,7 @@ const AddJobForm = () => {
         //check if all fields are there in job object --done
         //if yes, send post request to backend with all job data
         //wait for response
+        
         const response = await axios.post("/api/v1/users/add-job", job)
         
         // if response is ok, update user data and  show job
@@ -69,7 +72,7 @@ const AddJobForm = () => {
         <div className='flex justify-center items-center'>
             <div className='bg-white border-2 w-3/4 rounded-md my-3 px-3'>
 
-                <form className="flex w-full flex-col gap-4 p-3" onSubmit={handleAddJobSubmit}>
+                <form className="flex w-full flex-col gap-4 p-3" onSubmit={handleJobSubmit}>
                     <div>
                         <div className="mb-2 block">
                             <Label htmlFor="jobTitle" value='Job Title: ' />
@@ -203,7 +206,12 @@ const AddJobForm = () => {
                         </div>
 
                     </fieldset>
-                    <Button color='success' type='submit'>Add Job</Button>
+                    {
+                        state?.job ? 
+                        (<Button color='success' type='submit'>Update Job Details</Button>)
+                        :
+                        (<Button color='success' type='submit'>Add Job</Button>)
+                    }
                 </form>
             </div>
         </div>

@@ -77,7 +77,7 @@ const Dashboard = () => {
             <h2 className='text-2xl'>{job.companyName}</h2>
                 </div>
             <div className='flex'>
-            <Button type='button' size="sm" color='light' className='font-medium mr-2'>Edit</Button>
+            <Button type='button' size="sm" color='light' className='font-medium mr-2'><Link to={"/addJob"} state={{ job: job }}>Edit</Link></Button>
             <Button type='button' size="sm" color= 'failure' onClick={(e) => handleDeleteJob(e, job._id)} className='font-medium'>Delete</Button>
             </div>
             </div>
