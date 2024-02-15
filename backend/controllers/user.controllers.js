@@ -283,7 +283,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
   const coverImageLocalPath = req.file?.path
 
   if (!coverImageLocalPath) {
-    throw new ApiError(400, "Display picture file is missing")
+    throw new ApiError(400, "Cover Image file is missing")
   }
 
   const coverImage = await uploadOnCloudinary(coverImageLocalPath)
@@ -300,7 +300,7 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
     }
     , { new: true }).select("-password")
 
-  return res.status(200).json(new ApiResponse(200, "Cover Image updated succesfully"))
+  return res.status(200).json(new ApiResponse(200, user, "Cover Image updated succesfully"))
 })
 
 const addJob = asyncHandler(async (req, res) => {
@@ -504,6 +504,7 @@ const deleteJob = asyncHandler(async (req, res) => {
 
 })
 
+
 export {
   registerUser,
   loginUser,
@@ -516,5 +517,6 @@ export {
   updateUserCoverImage,
   addJob,
   getAllJobs,
-  deleteJob
+  deleteJob,
+  
 }

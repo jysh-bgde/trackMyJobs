@@ -50,12 +50,35 @@ const ProfileForm = () => {
                 'Content-Type': 'multipart/form-data'
             }
           })
-          console.log(response)
+        
           //     get response, save in session storage and save user using setUser
           sessionStorage.setItem("user", JSON.stringify(response.data.data))
           
           setUser(response.data.data)
           //     display display picture
+    }
+
+    async function handleCoverImageSave(e)
+    {
+        e.preventDefault()
+
+        const formData = new FormData()
+        formData.append("coverImage", coverImage)
+
+        const response = await axios.post("/api/v1/users/update-cover-image",formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+        })
+
+        
+        //     get response, save in session storage and save user using setUser
+        sessionStorage.setItem("user", JSON.stringify(response.data.data))
+        
+        setUser(response.data.data)
+        //     display display picture
+
+
     }
 
 
