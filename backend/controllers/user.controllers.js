@@ -504,6 +504,52 @@ const deleteJob = asyncHandler(async (req, res) => {
 
 })
 
+const removeDisplayPicture = asyncHandler(async(req, res)=>{
+
+  try {
+    //check if user exist
+    const userUpdated = await User.findByIdAndUpdate(req.user?._id, {
+      $set: {
+        displayPictureUrl: "",
+      }
+    }, {new:true}).select("-password")
+    
+    // if error in setting empty string throw error
+    if(!userUpdated)
+    {
+      throw new ApiError(400, "user not found")
+    }
+
+    //if user exist then set displayPicture to empty string
+    return res.status(200).json(new ApiResponse(200, userUpdated, "Display Picture removed"))
+    
+  } catch (error) {
+  //if any other error throw internal server error
+    throw new ApiError(500, "Internal server error while removing display picture")
+  }
+})
+
+const removeCoverImage = asyncHandler(async (req, res) => {
+  try {
+    //find user by id and update
+    const updatedUser = await User.findByIdAndUpdate(req.user?._id, {
+      $set:{
+        coverImageUrl: "",
+      }
+    }, {new:true}).select("-password")
+    //if error in updating throw error
+    if(!updatedUser)
+    {
+      throw new ApiError(400, "error in updating user cover image")
+    }
+  
+    //if no error send 200 response
+    return res.status(200).json(new ApiResponse(200, updatedUser, "Cover image removed"))
+  } catch (error) {
+    //if error throw internal server error
+    throw new ApiError(500, "internal server error while removing cover image")
+  }
+})
 
 export {
   registerUser,
@@ -518,5 +564,7 @@ export {
   addJob,
   getAllJobs,
   deleteJob,
+  removeDisplayPicture,
+  removeCoverImage
   
 }

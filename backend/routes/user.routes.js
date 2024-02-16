@@ -1,5 +1,5 @@
 import {Router} from "express";
-import { loginUser, logoutUser, refreshAccessToken, registerUser, updateAccountDetails, updateUserDisplayPicture, addJob, getAllJobs, deleteJob, updateUserCoverImage} from "../controllers/user.controllers.js";
+import { loginUser, logoutUser, refreshAccessToken, registerUser, updateAccountDetails, updateUserDisplayPicture, addJob, getAllJobs, deleteJob, updateUserCoverImage, removeDisplayPicture, removeCoverImage} from "../controllers/user.controllers.js";
 import {upload} from "../middlewares/multer.middlewares.js"
 import { verifyJWT } from "../middlewares/auth.middlewares.js";
 
@@ -31,4 +31,7 @@ router.route("/update-cover-image").post(verifyJWT,
 router.route("/refresh-token").post(refreshAccessToken)
 router.route("/jobs").get(verifyJWT, getAllJobs)
 router.route("/delete-job").post(verifyJWT, deleteJob)
+
+router.route("/remove-display-picture").get(verifyJWT, removeDisplayPicture)
+router.route("/remove-cover-image").get(verifyJWT, removeCoverImage)
 export default router

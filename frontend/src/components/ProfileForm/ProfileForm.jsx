@@ -8,8 +8,8 @@ const ProfileForm = () => {
     const [isEditButtonClicked, setIsEditButtonClicked] = useState(false)
     const [isChangeDisplayPictureButtonClicked, setIsChangeDisplayPictureButtonClicked] = useState(false)
     const [isChangeCoverImageButtonClicked, setIsChangeCoverImageButtonClicked] = useState(false)
-    const [displayPicture, setDisplayPicture] = useState()
-    const [coverImage, setCoverImage] = useState()
+    const [displayPicture, setDisplayPicture] = useState("")
+    const [coverImage, setCoverImage] = useState("")
 
     const {user, setUser} = useContext(UserContext)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -20,14 +20,16 @@ const ProfileForm = () => {
       if(user)
       {
         setIsAuthenticated(true)
-      }
+        setDisplayPicture(user.displayPictureUrl)
+        setCoverImage(user.coverImageUrl)
+    }
       else
       {
         setIsAuthenticated(false)
         navigate("/error")
       }
       
-    }, [isAuthenticated, user])
+    }, [isAuthenticated, user, displayPicture, coverImage])
     
 
 
@@ -113,9 +115,50 @@ const ProfileForm = () => {
             // update user using context
            sessionStorage.setItem("user", JSON.stringify(response.data.data))
             setUser(response.data.data)
+        }else
+        {
+            navigate("/error")
         }
     }
     
+    async function handleRemoveDisplayPicture(e)
+    {
+        // prevent default
+        e.preventDefault()
+        //call backend using axios -- get method to remove display picture
+        const response = await axios.get("/api/v1/users/remove-display-picture")
+        //if response is okay update user data
+        if(response.data.success)
+        {
+            sessionStorage.setItem("user", JSON.stringify(response.data.data))
+            setUser(sessionStorage.getItem("user"))
+        }else
+        {
+            //if response not ok show error
+            navigate("/error")
+        }
+
+    }
+
+    async function handleRemoveCoverImage(e)
+    {
+        //prevent default
+        e.preventDefault()
+        //call backend to remove cover image using axios -- get method 
+        const response = await axios.get("/api/v1/users/remove-cover-image")
+        //if response is ok then update user data
+        if(response.data.success)
+        {
+            sessionStorage.setItem("user", JSON.stringify(response.data.data))
+        }
+        else
+        {
+            //if response is not ok then show error
+            navigate("/error")
+            
+        }
+    }
+
     return (
         
         <div className='flex justify-center items-center'>
@@ -136,16 +179,17 @@ const ProfileForm = () => {
                     <Button color='success' className='my-1 mr-1'  onClick={(e) => {setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked), handleDisplayImageSave(e)} }>Save </Button>
                     </>) :(
                     <Button color='success' className='my-1 mr-1'  onClick={(e) => {setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked)} }>change display picture </Button>)}
-
+                   {user.displayPictureUrl && <Button color="failure" className='mr-1 my-1' onClick={handleRemoveDisplayPicture}> Remove display picture</Button>}
                     </div>
 
                     </div>
                     <div className='flex flex-col items-end'>
 
                     <img className='border-2 rounded-md' src={user?.coverImageUrl || "coverImageSample.jpg"} alt="Cover Image" height={1920} width={1280}/>
-                     <div >
+                     <div className='flex' >
                  
-                    
+                    {user.coverImageUrl && <Button color="failure" className='m-1' onClick={handleRemoveCoverImage}>Remove cover Image</Button>}
+
                     {isChangeCoverImageButtonClicked ? (
                     <>
                     
