@@ -40,25 +40,25 @@ function Navbar2() {
       </Navbar.Brand>
      
       {isAuthenticated ? ( <div className='flex items-center md:order-2'>
-      {/* <DarkThemeToggle/> */}
-            <NavLink to='profile' className="mx-2 hover:text-green-600 font-semibold" >Profile</NavLink>
+      <DarkThemeToggle/>
+            <NavLink to='profile' className="mx-2 hover:text-green-600 font-semibold dark:text-white" >Profile</NavLink>
             <Button onClick={handleLogout} color="success" type="button" >Logout</Button>
             <Navbar.Toggle />
         </div>) : ( <div className="flex md:order-2">
-        {/* <DarkThemeToggle/> */}
+        <DarkThemeToggle/>
         <Button className='mx-2' color="success"> <NavLink to="/login" >Login</NavLink></Button>
         <Button outline color='success'><NavLink to="/register" >Register</NavLink></Button>
         <Navbar.Toggle />
       </div>) }
       
       <Navbar.Collapse>
-        <NavLink to="/" className="hover:text-green-600 font-semibold">
+        <NavLink to="/" className="hover:text-green-600 font-semibold dark:text-white">
           Home
         </NavLink>
-        <NavLink to="/about" className="hover:text-green-600 font-semibold">About</NavLink>
-        <NavLink to="/blogs" className="hover:text-green-600 font-semibold">Blogs</NavLink>
-        <NavLink to="/contact" className="hover:text-green-600 font-semibold">Contact</NavLink>
-        {isAuthenticated ? ( <NavLink to="/dashboard" className="hover:text-green-600 font-semibold">Dashboard</NavLink>) : ("")}
+        <NavLink to="/about" className="hover:text-green-600  dark:text-white">About</NavLink>
+        <NavLink to="/blogs" className="hover:text-green-600  dark:text-white">Blogs</NavLink>
+        <NavLink to="/contact" className="hover:text-green-600  dark:text-white">Contact</NavLink>
+        {isAuthenticated ? ( <NavLink to="/dashboard" className="hover:text-green-600 font-semibold dark:text-white">Dashboard</NavLink>) : ("")}
       </Navbar.Collapse>
     </Navbar>
   );

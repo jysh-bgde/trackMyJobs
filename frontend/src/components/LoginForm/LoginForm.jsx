@@ -53,23 +53,23 @@ const LoginForm = () => {
     }
 
   return (
-    <div className='flex flex-col justify-center items-center'>
-        <Card className='flex flex-col border-2 rounded-md p-3  bg-white my-3'>
+    <div className='flex justify-center items-center'>
+        <Card>
             {showModal ? (<PopUp showModal ={showModal} bodyMessage={modalBodyMessage} setShowModal = {setShowModal}/>) : (
-            <form className="flex max-w-md flex-col gap-4">
-                <div className='p-3 flex justify-evenly items-center '>
-                    <Label  htmlFor="email">Email:</Label>
-                    <TextInput className='mx-2'  type="email" value = {email} name='email' id='email' onChange={(e)=>setEmail(e.target.value)}/>
+            <form className="flex max-w-md flex-col gap-4" onSubmit={handleLogin}>
+                <div className='p-3 flex flex-wrap justify-around items-center'>
+                    <Label  className="flex-1" htmlFor="email">Email:</Label>
+                    <TextInput className='sm:flex-1'  type="email" value = {email} name='email' id='email' onChange={(e)=>setEmail(e.target.value)} required/>
                 </div>
 
-                <div className='p-3 flex justify-evenly items-center'>
-                    <Label  htmlFor="password">Password:</Label>
-                    <TextInput className='mx-2' type="password" name='password' id='password' value={password} onChange={(e)=> setPassword(e.target.value)}/>
+                <div className='p-3 flex flex-wrap justify-around items-center'>
+                    <Label  className="flex-1" htmlFor="password">Password:</Label>
+                    <TextInput className='sm:flex-1' type="password" name='password' id='password' value={password} onChange={(e)=> setPassword(e.target.value)} required/>
                 </div>
 
                 <div className='p-3 '>
 
-                <Button type='submit' color='success' onClick={handleLogin}>Login</Button>
+                <Button type='submit' color='success' >Login</Button>
                 </div>
             </form>)}
             

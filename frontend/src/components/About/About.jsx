@@ -4,7 +4,7 @@ import {Card} from "flowbite-react"
 const About = () => {
     return (
         <div className='flex justify-center items-center p-3'>
-        <Card className='text-xl container flex flex-col justify-center p-3 border-2 rounded-lg bg-white my-3 '>
+        <Card className='dark:text-white'>
             
             <h1 className='text-3xl font-bold'>
                  <span className='text-green-500 '>About Track My Job</span>

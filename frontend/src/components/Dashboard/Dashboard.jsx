@@ -70,7 +70,7 @@ const Dashboard = () => {
         
     <div className='flex flex-col justify-center items-center w-full mx-3'>
        { jobs.map((job) => (
-        <Card key = {job._id} className={`p-3 w-full my-3 ${job.jobStatus==0 ? ("bg-white") :(job.jobStatus==-1?("bg-red-200"):(job.jobStatus==1 ? ("bg-yellow-200"):("bg-green-200")))}  border-2 rounded-md`} >
+        <Card key = {job._id} className={`p-3 w-full dark:text-white my-3 ${job.jobStatus==0 ? ("bg-white") :(job.jobStatus==-1?("bg-red-200"):(job.jobStatus==1 ? ("bg-yellow-200"):("bg-green-200")))}  border-2 rounded-md`} >
             <div className={`flex flex-wrap justify-between items-center border-b-2 ${job.jobStatus==0 ? ("border-gray-500") :(job.jobStatus==-1?("border-red-500"):(job.jobStatus==1 ? ("border-yellow-500"):("border-green-500")))}`}>
                 <div>
             <h1 className='text-3xl font-boldbold'>{job.jobTitle}</h1>

@@ -1,7 +1,7 @@
 import React from 'react'
 import FreeCard from '../FreeCard/FreeCard'
 import PremiumCard from '../PremiumCard/PremiumCard'
-import { Button, Card, TextInput } from 'flowbite-react'
+import { Button, Card, Label, TextInput } from 'flowbite-react'
 
 const Cards = () => {
   return (
@@ -14,9 +14,9 @@ const Cards = () => {
 
     <Card className='bg-white p-3 border-2 rounded-md my-2 flex items-center'>
     
-      <label htmlFor="premium" className='mx-2'>Enter email if interested in premium</label>
+      <Label htmlFor="premium" className='mx-2'>Enter email if interested in premium</Label>
       <TextInput id="premium" name='premium' type="email" placeholder="name@example.com" className='mx-2'/>
-      <Button color="success" className='mx-2'>Success</Button>
+      <Button color="success" className='mx-2'>Submit</Button>
     </Card>
 
   </div>
