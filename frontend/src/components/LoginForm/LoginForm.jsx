@@ -54,7 +54,7 @@ const LoginForm = () => {
 
   return (
     <div className='flex justify-center items-center'>
-        <Card>
+        <Card className='flex m-1'>
             {showModal ? (<PopUp showModal ={showModal} bodyMessage={modalBodyMessage} setShowModal = {setShowModal}/>) : (
             <form className="flex max-w-md flex-col gap-4" onSubmit={handleLogin}>
                 <div className='p-3 flex flex-wrap justify-around items-center'>

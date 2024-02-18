@@ -4,7 +4,7 @@ import { asyncHandler } from '../utilities/asyncHandler.js';
 import { ApiError } from "../utilities/ApiError.js";
 import { User } from "../models/jobs/user.models.js";
 import { Job } from "../models/jobs/job.models.js";
-import { uploadOnCloudinary } from "../utilities/cloudinary.js";
+import { uploadOnCloudinary, removeFromCloudinary } from "../utilities/cloudinary.js";
 import mongoose from "mongoose";
 
 const generateAccessAndRefreshTokens = async (userId) => {
@@ -254,7 +254,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 
 const updateUserDisplayPicture = asyncHandler(async (req, res) => {
   // console.log(1, req.file)
-  const displayPictureLocalPath = req.file.path
+  const displayPictureLocalPath = req.file?.path
 
   if (!displayPictureLocalPath) {
     throw new ApiError(400, "Display picture file is missing")
@@ -269,7 +269,8 @@ const updateUserDisplayPicture = asyncHandler(async (req, res) => {
   const user = await User.findByIdAndUpdate(req.user?._id,
     {
       $set: {
-        displayPictureUrl: displayPicture.url
+        displayPictureUrl: displayPicture.url,
+        displayPicturePublicId: displayPicture.public_id
       }
     }
     , { new: true }).select("-password")
@@ -295,7 +296,8 @@ const updateUserCoverImage = asyncHandler(async (req, res) => {
   const user = await User.findByIdAndUpdate(req.user?._id,
     {
       $set: {
-        coverImageUrl: coverImage.url
+        coverImageUrl: coverImage.url,
+        coverImagePublicId : coverImage.public_id
       }
     }
     , { new: true }).select("-password")
@@ -507,10 +509,18 @@ const deleteJob = asyncHandler(async (req, res) => {
 const removeDisplayPicture = asyncHandler(async(req, res)=>{
 
   try {
+    const response = await removeFromCloudinary(req.user?.displayPicturePublicId)
+    if(!response)
+    {
+      throw new ApiError(500, "Error while deleting cover image" )
+    }
+    
     //check if user exist
+
     const userUpdated = await User.findByIdAndUpdate(req.user?._id, {
       $set: {
         displayPictureUrl: "",
+        displayPicturePublicId:"",
       }
     }, {new:true}).select("-password")
     
@@ -532,9 +542,16 @@ const removeDisplayPicture = asyncHandler(async(req, res)=>{
 const removeCoverImage = asyncHandler(async (req, res) => {
   try {
     //find user by id and update
+    const response = await removeFromCloudinary(req.user?.coverImagePublicId)
+    if(!response)
+    {
+      throw new ApiError(500, "Error while deleting cover image" )
+    }
+    
     const updatedUser = await User.findByIdAndUpdate(req.user?._id, {
       $set:{
         coverImageUrl: "",
+        coverImagePublicId: "",
       }
     }, {new:true}).select("-password")
     //if error in updating throw error

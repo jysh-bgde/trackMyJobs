@@ -82,10 +82,10 @@ const Dashboard = () => {
             </div>
             </div>
             <p><b>Job Status :</b> {job.jobStatus==0 ? ("Applied") :(job.jobStatus==-1?("Rejected"):(job.jobStatus==1 ? ("Ongoing"):("Accepted")))}</p>
-           <p> <a href={job.companyWebsite} target='_blank'><b>Company Website :</b> {job.companyWebsite}</a></p>
+           <p> <a href={job.companyWebsite} target='_blank' rel="noopener noreferrer" ><b>Company Website :</b> {job.companyWebsite}</a></p>
             
             <p><b>Applied on Date : </b>{job.jobAppliedOnDate}</p>
-            <p><b>applied where?: </b> {job.jobAppliedOnWebsite}</p>
+            <p><b>Applied where?: </b> {job.jobAppliedOnWebsite}</p>
             <p><b>Job Salary:</b>{job.jobSalary}</p>
             <p><b>Job Minimum Experience: </b>{job.jobMinimumExperience}</p>
             <p><b>Job Work Location: </b>{job.jobLocation}</p>

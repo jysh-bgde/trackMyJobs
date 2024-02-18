@@ -91,8 +91,14 @@ const userSchema = new mongoose.Schema({
         type: String,
          //cloudinary
     },
+    displayPicturePublicId:{
+        type:String
+    },
     coverImageUrl:{
         type: String, //cloudinary
+    },
+    coverImagePublicId:{
+        type: String,
     },
     refreshToken: {
         type: String,

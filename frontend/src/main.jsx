@@ -26,7 +26,7 @@ const router = createBrowserRouter(
       <Route path='profile' element={<ProfileForm/> } />
       <Route path='login' element={<LoginForm/> } />
       <Route path='register' element={<RegisterForm/> } />
-      <Route path='blogs' element={<Blogs/>} />
+      {/* <Route path='blogs' element={<Blogs/>} /> */}
       <Route path='addJob' element={<AddJobForm/>} />
       <Route path='error' element={<Error/>} />
 

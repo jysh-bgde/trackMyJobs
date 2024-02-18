@@ -72,7 +72,7 @@ const PremiumCard = () => {
             clipRule="evenodd"
           />
         </svg>
-        <span className="text-base font-normal leading-tight text-gray-500">Salaries of job in company</span>
+        <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">Salaries of job in company</span>
       </li>
       <li className="flex space-x-3 decoration-gray-500">
       <svg
@@ -87,7 +87,7 @@ const PremiumCard = () => {
             clipRule="evenodd"
           />
         </svg>
-        <span className="text-base font-normal leading-tight text-gray-500">Interview questions of job in company</span>
+        <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">Interview questions of job in company</span>
       </li>
       <li className="flex space-x-3  decoration-gray-500">
       <svg
@@ -102,7 +102,7 @@ const PremiumCard = () => {
             clipRule="evenodd"
           />
         </svg>
-        <span className="text-base font-normal leading-tight text-gray-500">Resume builder</span>
+        <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">Resume builder</span>
       </li>
      
     </ul>

@@ -70,7 +70,7 @@ const AddJobForm = () => {
 
     return (
         <div className='flex justify-center items-center'>
-            <div className='bg-white border-2 w-3/4 rounded-md my-3 px-3'>
+            <div className='bg-white dark:bg-gray-800  w-3/4 rounded-md my-3 px-3'>
 
                 <form className="flex w-full flex-col gap-4 p-3" onSubmit={handleJobSubmit}>
                     <div>
@@ -90,7 +90,7 @@ const AddJobForm = () => {
 
                     <div>
                         <div className="mb-2 block">
-                            <Label htmlFor="companyName" value="Company Name" />
+                            <Label htmlFor="companyName" value="Company Name: " />
                         </div>
                         <TextInput id="companyName"
                             type="text"
@@ -109,7 +109,7 @@ const AddJobForm = () => {
                         <TextInput id="companyWebsite"
                             type="text"
                             name='companyWebsite'
-                            placeholder="www.amazon.com" 
+                            placeholder="Please enter full website name including https:// or http:// for example https://www.amazon.com" 
                             value={job.companyWebsite}
                             onChange={(e) => setJob({...job, companyWebsite:e.target.value})}
                            
@@ -174,7 +174,7 @@ const AddJobForm = () => {
                         <div className="mb-2 block">
                             <Label htmlFor="appliedOnDate" value="Applied on date" />
                         </div>
-                        <input
+                        <TextInput
                             type='date'
                             className=' border-gray-300 rounded-lg text-gray-500 bg-gray-50 w-full'
                             id="appliedOnDate"
@@ -187,7 +187,7 @@ const AddJobForm = () => {
                     </div>
 
                     <fieldset className="flex max-w-md flex-col gap-4">
-                        <legend className="mb-4">Job Status</legend>
+                        <legend className="mb-4 dark:text-white">Job Status</legend>
                         <div className="flex items-center gap-2">
                             <Radio id="applied" name="jobStatus" value="Applied" defaultChecked  onClick={(e) => setJob({...job, jobStatus:e.target.value})}/>
                             <Label htmlFor="applied">Applied</Label>

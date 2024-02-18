@@ -56,7 +56,7 @@ function Navbar2() {
           Home
         </NavLink>
         <NavLink to="/about" className="hover:text-green-600  dark:text-white">About</NavLink>
-        <NavLink to="/blogs" className="hover:text-green-600  dark:text-white">Blogs</NavLink>
+        {/* <NavLink to="/blogs" className="hover:text-green-600  dark:text-white">Blogs</NavLink> */}
         <NavLink to="/contact" className="hover:text-green-600  dark:text-white">Contact</NavLink>
         {isAuthenticated ? ( <NavLink to="/dashboard" className="hover:text-green-600 font-semibold dark:text-white">Dashboard</NavLink>) : ("")}
       </Navbar.Collapse>

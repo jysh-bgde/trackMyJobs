@@ -8,8 +8,8 @@ const ProfileForm = () => {
     const [isEditButtonClicked, setIsEditButtonClicked] = useState(false)
     const [isChangeDisplayPictureButtonClicked, setIsChangeDisplayPictureButtonClicked] = useState(false)
     const [isChangeCoverImageButtonClicked, setIsChangeCoverImageButtonClicked] = useState(false)
-    const [displayPicture, setDisplayPicture] = useState("")
-    const [coverImage, setCoverImage] = useState("")
+    const [displayPicture, setDisplayPicture] = useState()
+    const [coverImage, setCoverImage] = useState()
 
     const { user, setUser } = useContext(UserContext)
     const [isAuthenticated, setIsAuthenticated] = useState(false)
@@ -19,15 +19,15 @@ const ProfileForm = () => {
 
         if (user) {
             setIsAuthenticated(true)
-            setDisplayPicture(user.displayPictureUrl)
-            setCoverImage(user.coverImageUrl)
+            //setDisplayPicture(user.displayPictureUrl)
+            //setCoverImage(user.coverImageUrl)
         }
         else {
             setIsAuthenticated(false)
             navigate("/error")
         }
 
-    }, [isAuthenticated, user, displayPicture, coverImage])
+    }, [isAuthenticated, user])
 
 
 
@@ -38,7 +38,7 @@ const ProfileForm = () => {
         const formData = new FormData()
         formData.append("displayPicture", displayPicture)
 
-
+        // console.log(displayPicture)
         // console.log(displayPicture)
 
 
@@ -63,7 +63,7 @@ const ProfileForm = () => {
 
         const formData = new FormData()
         formData.append("coverImage", coverImage)
-
+        
         const response = await axios.post("/api/v1/users/update-cover-image", formData, {
             headers: {
                 'Content-Type': 'multipart/form-data'
@@ -109,7 +109,7 @@ const ProfileForm = () => {
 
     async function handleRemoveDisplayPicture(e) {
         // prevent default
-        e.preventDefault()
+       
         //call backend using axios -- get method to remove display picture
         const response = await axios.get("/api/v1/users/remove-display-picture")
         //if response is okay update user data
@@ -125,12 +125,13 @@ const ProfileForm = () => {
 
     async function handleRemoveCoverImage(e) {
         //prevent default
-        e.preventDefault()
+       
         //call backend to remove cover image using axios -- get method 
         const response = await axios.get("/api/v1/users/remove-cover-image")
         //if response is ok then update user data
         if (response.data.success) {
             sessionStorage.setItem("user", JSON.stringify(response.data.data))
+            setUser(sessionStorage.getItem("user"))
         }
         else {
             //if response is not ok then show error
@@ -142,11 +143,11 @@ const ProfileForm = () => {
     return (
 
         <div className='flex justify-center items-center'>
-            <div className='bg-white my-3 p-3 border-2 rounded-md'>
+            <div className='bg-white dark:bg-gray-800 my-3 p-3 rounded-md'>
                 <form className="flex flex-col gap-4"  >
                     <div className='p-3 flex justify-between items-center'>
                         <div className='flex mx-1 flex-col items-center'>
-                            <img className='border-2 gap-1 rounded-md mx-3' src={user?.displayPictureUrl || "displayPictureSample.png"} alt="display picture" height={128} width={128} />
+                            <img className='gap-1 rounded-md mx-3' src={user?.displayPictureUrl || "displayPictureSample.png"} alt="display picture" height={128} width={128} />
 
                             <div >
 
@@ -154,7 +155,7 @@ const ProfileForm = () => {
                                 {isChangeDisplayPictureButtonClicked ? (
                                     <div className='flex flex-wrap gap-1'>
 
-                                        <FileInput accept="image/png, image/jpeg" onChange={(e) => { setDisplayPicture(e.target.files[0]) }} type='file' name='displayPicture' className='m-1' />
+                                        <FileInput accept="image/png, image/jpeg" onChange={(e) => {setDisplayPicture(e.target.files[0]) }} type='file' name='displayPicture' className='m-1'  />
 
                                         <Button color='success' className='my-1 mr-1' onClick={(e) => { setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked), handleDisplayImageSave(e) }}>Save </Button>
                                         <Button color='failure' className='my-1 mr-1' onClick={()=> { setIsChangeDisplayPictureButtonClicked(!isChangeDisplayPictureButtonClicked) }}> Cancel</Button>
@@ -166,7 +167,7 @@ const ProfileForm = () => {
                         </div>
                         <div className='flex flex-col items-end'>
 
-                            <img className='border-2 rounded-md' src={user?.coverImageUrl || "coverImageSample.jpg"} alt="Cover Image" height={1920} width={1280} />
+                            <img className='rounded-md' src={user?.coverImageUrl || "coverImageSample.jpg"} alt="Cover Image" height={1920} width={1280} />
                             <div className='flex' >
 
                                 {user.coverImageUrl && <Button color="failure" className='m-1' onClick={handleRemoveCoverImage}>Remove cover Image</Button>}
