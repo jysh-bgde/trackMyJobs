@@ -3,6 +3,7 @@ import UserContext from '../../context/UserContext'
 import { Link, useNavigate } from 'react-router-dom'
 import { Button, Card } from 'flowbite-react'
 import axios from 'axios'
+import Paginate from '../Paginate/Paginate'
 const Dashboard = () => {
 
     const {user, setUser} = useContext(UserContext)
@@ -66,6 +67,7 @@ const Dashboard = () => {
     }
 
   return (
+    <div className='my-2'>
     <div className='flex justify-between items-start'>
         
     <div className='flex flex-col justify-center items-center w-full mx-3'>
@@ -99,6 +101,8 @@ const Dashboard = () => {
     <Link to='/addJob' >Add Job</Link>
         </Button>
         </div>
+       </div>
+        <Paginate/>
        </div>
   )
 }
