@@ -406,9 +406,9 @@ const getAllJobs = asyncHandler(async (req, res) => {
       throw new ApiError(400, "User does not exist")
     }
     
-    const pageNo = req.query?.pageNo || 0;
-    const jobsPerPage = req.query?.limit || 10;
-    const skip = pageNo * jobsPerPage
+    // const pageNo = req.query?.pageNo || 0;
+    // const jobsPerPage = req.query?.limit || 10;
+    // const skip = pageNo * jobsPerPage
     //if user exist get all jobs from user.jobsApplied
     //populate jobs and store in an array 
     const userAppliedJobs = await User.aggregate([
@@ -417,9 +417,9 @@ const getAllJobs = asyncHandler(async (req, res) => {
           _id: user?._id
         }
       },
-      {
-        $slice: ["$jobsApplied", skip, jobsPerPage]
-      },
+      // {
+      //   $slice: ["$jobsApplied", skip, jobsPerPage]
+      // },
       // {
       //   $unwind: "$jobsApplied"
       // },
