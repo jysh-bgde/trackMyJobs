@@ -1,6 +1,6 @@
 import { Button, ButtonGroup, DarkThemeToggle, Navbar } from 'flowbite-react';
 import { useContext, useEffect, useState } from 'react';
-import {NavLink, useNavigate} from 'react-router-dom'
+import {Link, NavLink, useNavigate} from 'react-router-dom'
 import UserContext from '../../context/UserContext'
 
 
@@ -33,11 +33,11 @@ function Navbar2() {
 
 
   return (
-    <Navbar fluid rounded>
-      <Navbar.Brand href="/" >
+    <Navbar fluid >
+      <div className='flex' >
         <img src="tmjLogoBgWhite.png" className="mr-3 h-6 sm:h-9 object-cover" alt="Track My Job Logo" />
-        <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">Track My Jobs</span>
-      </Navbar.Brand>
+        <Link href='/'  className="self-center whitespace-nowrap text-xl text-green-500 font-semibold ">Track My Jobs</Link >
+      </div>
      
       {isAuthenticated ? ( <div className='flex items-center md:order-2'>
       <DarkThemeToggle/>

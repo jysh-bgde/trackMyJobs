@@ -14,13 +14,14 @@ import Blogs from './components/Blogs/Blogs.jsx'
 import Dashboard from './components/Dashboard/Dashboard.jsx'
 import Error from './components/Error/Error.jsx'
 import AddJobForm from './components/AddJobForm/AddJobForm.jsx'
+import Home from './components/Home/Home.jsx'
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path='/' element={<Layout/>} >
 
+      <Route path='' element={<Home/>} />
       <Route path='dashboard' element={<Dashboard/>} />
-      <Route path='' element={<Cards/>} />
       <Route path='about' element={<About/>} />
       <Route path='contact' element={<Contact/>} />
       <Route path='profile' element={<ProfileForm/> } />

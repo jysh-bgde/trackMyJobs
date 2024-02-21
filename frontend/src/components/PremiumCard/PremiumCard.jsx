@@ -41,7 +41,7 @@ const PremiumCard = () => {
           />
         </svg>
         <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
-        Upload one resume 
+        Upload resume 
         </span>
       </li>
       <li className="flex space-x-3">

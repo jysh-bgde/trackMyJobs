@@ -5,15 +5,16 @@ import { Outlet } from 'react-router-dom'
 import UserContextProvider from './context/UserContextProvider'
 import  FooterComponent  from './components/Footer/FooterComponent'
 import { Flowbite } from 'flowbite-react'
+import Header from './components/Header/Header'
 
 
 const Layout = () => {
   return (
-    <Flowbite>
+      <Flowbite>
     <UserContextProvider>
    
     <Navbar/>
-  
+   
     <Outlet/>
     <FooterComponent/>
    

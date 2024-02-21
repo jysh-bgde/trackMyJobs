@@ -48,9 +48,10 @@ const FreeCard = () => {
           </svg>
           <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">Keep Track of Jobs</span>
         </li>
-        <li className="flex space-x-3">
-          <svg
-            className="h-5 w-5 shrink-0 text-green-600 dark:text-green-500"
+        
+        <li className="flex line-through decoration-gray-500 space-x-3">
+        <svg
+            className="h-5 w-5 shrink-0 text-gray-400 dark:text-gray-500"
             fill="currentColor"
             viewBox="0 0 20 20"
             xmlns="http://www.w3.org/2000/svg"
@@ -61,9 +62,7 @@ const FreeCard = () => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">
-          Upload one resume 
-          </span>
+          <span className="text-base font-normal leading-tight text-gray-500"> Upload resume </span>
         </li>
         <li className="flex line-through decoration-gray-500 space-x-3">
         <svg
@@ -78,7 +77,7 @@ const FreeCard = () => {
               clipRule="evenodd"
             />
           </svg>
-          <span className="text-base font-normal leading-tight text-gray-500 dark:text-gray-400">Reviews of company</span>
+          <span className="text-base font-normal leading-tight text-gray-500">Reviews of company</span>
         </li>
         <li className="flex space-x-3 line-through decoration-gray-500">
           <svg
