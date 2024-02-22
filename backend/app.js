@@ -2,6 +2,7 @@ import express from "express"
 import cookieParser from "cookie-parser"
 import cors from "cors"
 import dotenv from "dotenv"
+import path from 'path'; 
 
 dotenv.config()
 
@@ -28,10 +29,23 @@ app.use(express.urlencoded(
         limit: "16kb"
     }
 ))
-
-app.use(express.static("public"))
-
 app.use(cookieParser())
+
+//app.use(express.static("public"))
+if(process.env.NODE_ENV === 'production')
+{
+    const __dirname = path.resolve();
+    app.use(express.static(path.join(__dirname, 'frontend/dist')));
+
+    app.get("*", (req, res)=> res.sendFile(path.resolve(__dirname, 'client', "dist", 'index.html')))
+}
+else
+{
+    app.get('/', (req, res) => res.send('server is ready'));
+
+}
+
+
 
 //router import
 import userRouter from "./routes/user.routes.js"
