@@ -5,12 +5,15 @@
   "main": "index.js",
   "scripts": {
     "install-server": "cd backend && npm install",
-    "start-server": "cd backend && node app.js",
+    "start-server": "cd backend && node index.js",
     "install-client": "cd frontend && npm install",
     "build-client": "cd frontend && npm run build",
     "start-client": "cd frontend && npm run start"
   },
   "keywords": [],
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  }
 }
