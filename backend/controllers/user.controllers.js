@@ -255,6 +255,7 @@ const updateAccountDetails = asyncHandler(async (req, res) => {
 const updateUserDisplayPicture = asyncHandler(async (req, res) => {
   // console.log(1, req.file)
   const displayPictureLocalPath = req.file?.path
+  console.log(displayPictureLocalPath)
 
   if (!displayPictureLocalPath) {
     throw new ApiError(400, "Display picture file is missing")
@@ -282,7 +283,7 @@ const updateUserDisplayPicture = asyncHandler(async (req, res) => {
 })
 const updateUserCoverImage = asyncHandler(async (req, res) => {
   const coverImageLocalPath = req.file?.path
-
+  
   if (!coverImageLocalPath) {
     throw new ApiError(400, "Cover Image file is missing")
   }
