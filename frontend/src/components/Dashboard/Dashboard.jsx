@@ -73,8 +73,8 @@ const Dashboard = () => {
         
     <div className='flex flex-col justify-center items-center w-full mx-3'>
        { jobs.map((job) => (
-        <Card key = {job._id} className={`p-3 w-full dark:text-white my-3 ${job.jobStatus==0 ? ("bg-white") :(job.jobStatus==-1?("bg-red-200"):(job.jobStatus==1 ? ("bg-yellow-200"):("bg-green-200")))}  border-2 rounded-md`} >
-            <div className={`flex flex-wrap justify-between items-center border-b-2 ${job.jobStatus==0 ? ("border-gray-500") :(job.jobStatus==-1?("border-red-500"):(job.jobStatus==1 ? ("border-yellow-500"):("border-green-500")))}`}>
+        <Card key = {job._id} className={`p-3 w-full dark:text-white my-3 ${job.jobStatus=="Applied" ? ("bg-white") :(job.jobStatus=="Rejected"?("bg-red-200"):(job.jobStatus=="Ongoing" ? ("bg-yellow-200"):("bg-green-200")))}  border-2 rounded-md`} >
+            <div className={`flex flex-wrap justify-between items-center border-b-2 ${job.jobStatus=="Applied" ? ("border-gray-500") :(job.jobStatus=="Rejected"?("border-red-500"):(job.jobStatus=="Ongoing" ? ("border-yellow-500"):("border-green-500")))}`}>
                 <div>
             <h1 className='text-3xl font-boldbold'>{job.jobTitle}</h1>
             <h2 className='text-2xl font-semibold'>{job.companyName}</h2>
@@ -84,7 +84,7 @@ const Dashboard = () => {
             <Button type='button' size="sm" color= 'failure' onClick={(e) => handleDeleteJob(e, job._id)} className='font-medium'>Delete</Button>
             </div>
             </div>
-            <p><b>Job Status :</b> {job.jobStatus==0 ? ("Applied") :(job.jobStatus==-1?("Rejected"):(job.jobStatus==1 ? ("Ongoing"):("Accepted")))}</p>
+            <p><b>Job Status :</b> {job.jobStatus}</p>
            <p> <a href={job.companyWebsite} target='_blank' rel="noopener noreferrer" ><b>Company Website :</b> {job.companyWebsite}</a></p>
             
             <p><b>Applied on Date : </b>{job.jobAppliedOnDate}</p>
