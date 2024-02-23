@@ -25,6 +25,7 @@ const Dashboard = () => {
                 const response  = await axios.get('/api/v1/users/jobs')
                 //console.log(response.data.data)
                 //set and display jobs
+                    console.log(response)
                 if(response.data.success)
                 {
                     setJobs(response.data.data)

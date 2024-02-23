@@ -31,17 +31,17 @@ app.use(express.urlencoded(
 ))
 app.use(cookieParser())
 
-//app.use(express.static("public"))
 if(process.env.NODE_ENV === 'production')
 {
     const __dirname = path.resolve();
     app.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-    app.get("*", (req, res)=> res.sendFile(path.resolve(__dirname,'..' ,'frontend', "dist", 'index.html')))
+    app.get("/", (req, res)=> res.sendFile(path.resolve(__dirname,'..' ,'frontend', "dist", 'index.html')))
 }
 else
 {
-    app.get('/', (req, res) => res.send('server is ready'));
+    app.use(express.static("public"))
+    // app.get('/', (req, res) => res.send('server is ready'));
 
 }
 
