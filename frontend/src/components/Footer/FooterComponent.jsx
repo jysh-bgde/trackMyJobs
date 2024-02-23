@@ -54,7 +54,7 @@ const FooterComponent = () => {
               <Footer.LinkGroup col>
                 <Link to="/" className='hover:text-green-600 font-semibold'>Home</Link>
                 <Link to="/about" className='hover:text-green-600 font-semibold'>About</Link>
-                <Link to="/blogs" className='hover:text-green-600 font-semibold'>Blogs</Link>
+                {/* <Link to="/blogs" className='hover:text-green-600 font-semibold'>Blogs</Link> */}
                 <Link to="/contact" className='hover:text-green-600 font-semibold'>Contact</Link>
               </Footer.LinkGroup>
             </div>

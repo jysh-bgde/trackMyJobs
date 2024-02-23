@@ -36,8 +36,8 @@ import userRouter from "./routes/user.routes.js"
 if(process.env.NODE_ENV === 'production')
 {
     const __dirname = path.resolve();
+    app.use(express.static("public"))
     app.use(express.static(path.join(__dirname, '../frontend/dist')));
-    app.use(express.static(path.join(__dirname, './public')))
     
     
     //routes declaration
@@ -46,6 +46,7 @@ if(process.env.NODE_ENV === 'production')
 }
 else
 {
+    app.use("/api/v1/users",userRouter)
     app.use(express.static("public"))
     // app.get('/', (req, res) => res.send('server is ready'));
 
