@@ -30,12 +30,17 @@ app.use(express.urlencoded(
     }
 ))
 app.use(cookieParser())
+//router import
+import userRouter from "./routes/user.routes.js"
 
 if(process.env.NODE_ENV === 'production')
 {
     const __dirname = path.resolve();
     app.use(express.static(path.join(__dirname, '../frontend/dist')));
-
+    
+    
+    //routes declaration
+    app.use("/api/v1/users",userRouter)
     app.get("*", (req, res)=> res.sendFile(path.resolve(__dirname,'..' ,'frontend', "dist", 'index.html')))
 }
 else
@@ -47,11 +52,6 @@ else
 
 
 
-//router import
-import userRouter from "./routes/user.routes.js"
-
-//routes declaration
-app.use("/api/v1/users",userRouter)
 
 
 
