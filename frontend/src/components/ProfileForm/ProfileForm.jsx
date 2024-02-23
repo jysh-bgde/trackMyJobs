@@ -84,7 +84,7 @@ const ProfileForm = () => {
     async function handleProfileSave(e) {
         //preventDefault
         e.preventDefault()
-        console.log(user)
+      
         //post req to /api/v1/users/updateAccountDetails with necessary details
         const response = await axios.post("/api/v1/users/updateAccountDetails", {
             firstName: user.firstName,
@@ -98,7 +98,7 @@ const ProfileForm = () => {
         //setModalBodyMessage(response.data.message)
         if (response.data.success) {
 
-            console.log(response.data.data)
+           
             // update user using context
             sessionStorage.setItem("user", JSON.stringify(response.data.data))
             setUser(response.data.data)

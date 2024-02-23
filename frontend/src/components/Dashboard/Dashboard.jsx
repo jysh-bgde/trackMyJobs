@@ -25,7 +25,7 @@ const Dashboard = () => {
                 const response  = await axios.get('/api/v1/users/jobs')
                 //console.log(response.data.data)
                 //set and display jobs
-                    console.log(response)
+                    
                 if(response.data.success)
                 {
                     setJobs(response.data.data)
@@ -52,7 +52,7 @@ const Dashboard = () => {
         //call backend to delete job using axios
         
         const response = await axios.post("/api/v1/users/delete-job", {jobId})
-        console.log(response)
+        
         //if response is okay show dashboard
         if(response.data.success)
         {   
