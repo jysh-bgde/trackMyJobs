@@ -12,8 +12,8 @@ const Header = () => {
         <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">TrackMyJobs keeps your applications organized and helps you land your dream job.</p>
         <div className="flex justify-center gap-1">
 
-       <Button className="" color="success" outline><Link to="/login">Sign in </Link></Button>
-       <Button className="" color="success"><Link to="/register"></Link>Sign Up</Button>
+        <Button className='mx-2' color="success"> <Link href="/login" >Login</Link></Button>
+        <Button outline color='success'><Link href="/register" >Register</Link></Button>
         </div>
     </div>
 </section>
