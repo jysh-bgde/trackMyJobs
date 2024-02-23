@@ -1,5 +1,6 @@
 import { Button } from 'flowbite-react'
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
     return (
@@ -11,8 +12,8 @@ const Header = () => {
         <p className="mb-8 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 lg:px-48 dark:text-gray-200">TrackMyJobs keeps your applications organized and helps you land your dream job.</p>
         <div className="flex justify-center gap-1">
 
-       <Button className="" color="success" outline>Sign in</Button>
-       <Button className="" color="success">Sign Up</Button>
+       <Button className="" color="success" outline><Link to="/login">Sign in </Link></Button>
+       <Button className="" color="success"><Link to="/register"></Link>Sign Up</Button>
         </div>
     </div>
 </section>
