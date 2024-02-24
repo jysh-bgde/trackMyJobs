@@ -7,11 +7,11 @@ const About = () => {
         <Card className='dark:text-white'>
             
             <h1 className='text-3xl font-bold'>
-                 <span className='text-green-500 '>About Track My Job</span>
+                 <span className='text-green-500 '>About Track My Jobs</span>
             </h1>
             <br />
             <p>
-                <b className='text-green-500 font-bold'>We believe the job hunt shouldn't be a wild goose chase.</b> It should be a strategic, organized sprint toward landing your dream career. That's why we built <span className='font-semibold text-green-500'>Track My Job</span>: a powerful tool to <b className='text-green-500 font-bold'>streamline your search, conquer chaos, and land your next big opportunity.</b>
+                <b className='text-green-500 font-bold'>We believe the job hunt shouldn't be a wild goose chase.</b> It should be a strategic, organized sprint toward landing your dream career. That's why we built <span className='font-semibold text-green-500'>Track My Jobs</span>: a powerful tool to <b className='text-green-500 font-bold'>streamline your search, conquer chaos, and land your next big opportunity.</b>
 
             </p>
             <br />
@@ -30,7 +30,7 @@ const About = () => {
             <p className='text-2xl'><b className='text-green-500 font-bold'>What We Do:</b></p>
         <br />
             <p>
-                <b className='text-green-500 font-bold'>Track My Job</b> is more than just a job board. We're your <b className='text-green-500 font-bold'>personal job hunting assistant</b> and organizational guru, rolled into one. Here's what we offer:
+                <b className='text-green-500 font-bold'>Track My Jobs</b> is more than just a job board. We're your <b className='text-green-500 font-bold'>personal job hunting assistant</b> and organizational guru, rolled into one. Here's what we offer:
             </p>
 
 <br />
@@ -39,7 +39,7 @@ const About = () => {
                 <p>
                 <b className='text-green-500 font-bold'>Application tracker:</b> Say goodbye to scattered emails and lost resumes. Keep track of everything in one place.</p>
                 <p><b className='text-green-500 font-bold'>Status organizer:</b> Monitor the progress of your applications, from submitted to interviewed to landed.</p>
-                <p><b className='text-green-500 font-bold'>Performance insights:</b> Analyze your resume performance, learn which platforms work best for you, and refine your search strategy.</p>
+                {/* <p><b className='text-green-500 font-bold'>Performance insights:</b> Analyze your resume performance, learn which platforms work best for you, and refine your search strategy.</p> */}
                 
             
 <br />
