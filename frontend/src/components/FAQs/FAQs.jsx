@@ -3,75 +3,89 @@ import { Accordion } from 'flowbite-react';
 
 const FAQs = () => {
   return (
-    <div className='bg-white mx-2 my-10 p-2 rounded-md dark:bg-gray-800'>
-      <h1 className='text-4xl font-extrabold tracking-tight leading-none p-2 text-gray-900 md:text-5xl lg:text-6xl dark:text-white'>FAQs</h1>
+    <div className='bg-white mx-2 my-10 p-2 rounded-md dark:bg-gray-800 '>
+      <h1 className='text-4xl font-extrabold tracking-tight leading-none p-2 text-gray-900 md:text-5xl lg:text-6xl dark:text-white text-center'>Frequently Asked Questions</h1>
     <Accordion>
+
     <Accordion.Panel>
-      <Accordion.Title>What is Flowbite?</Accordion.Title>
+      <Accordion.Title >What is Track My Jobs?</Accordion.Title>
       <Accordion.Content>
         <p className="mb-2 text-gray-500 dark:text-gray-400">
-          Flowbite is an open-source library of interactive components built on top of Tailwind CSS including buttons,
-          dropdowns, modals, navbars, and more.
+        Track My Jobs is a platform that helps you organize and manage your job search efficiently. It allows you to track applications, stay on top of deadlines, and increase your chances of landing your dream job.
         </p>
-        <p className="text-gray-500 dark:text-gray-400">
-          Check out this guide to learn how to&nbsp;
-          <a
-            href="https://flowbite.com/docs/getting-started/introduction/"
-            className="text-cyan-600 hover:underline dark:text-cyan-500"
-          >
-            get started&nbsp;
-          </a>
-          and start developing websites even faster with components on top of Tailwind CSS.
+        
+      </Accordion.Content>
+    </Accordion.Panel>
+
+    <Accordion.Panel>
+      <Accordion.Title>Who is Track My Jobs for?</Accordion.Title>
+      <Accordion.Content>
+        <p className="mb-2 text-gray-500 dark:text-gray-400">
+        Track My Jobs is for anyone actively looking for a job, regardless of their experience level or industry. It's perfect for students, recent graduates, career changers, and seasoned professionals alike. 
+        </p>
+       
+      </Accordion.Content>
+    </Accordion.Panel>
+
+    <Accordion.Panel>
+      <Accordion.Title>Who is Track My Jobs NOT for?</Accordion.Title>
+      <Accordion.Content>
+        <p className="mb-2 text-gray-500 dark:text-gray-400">
+        Track My Jobs is NOT a job board. We can only help keeping track of your applications across various other job boards.
+        </p>
+       
+      </Accordion.Content>
+    </Accordion.Panel>
+
+    
+
+    <Accordion.Panel>
+      <Accordion.Title>Is my data safe with Track My Jobs?</Accordion.Title>
+      <Accordion.Content>
+        <p className="mb-2 text-gray-500 dark:text-gray-400">
+        Yes, your data is safe with us. We use industry-standard security measures to protect your information.
         </p>
       </Accordion.Content>
     </Accordion.Panel>
+
     <Accordion.Panel>
-      <Accordion.Title>Is there a Figma file available?</Accordion.Title>
+      <Accordion.Title>What are the different pricing plans?</Accordion.Title>
       <Accordion.Content>
         <p className="mb-2 text-gray-500 dark:text-gray-400">
-          Flowbite is first conceptualized and designed using the Figma software so everything you see in the library
-          has a design equivalent in our Figma file.
-        </p>
-        <p className="text-gray-500 dark:text-gray-400">
-          Check out the
-          <a href="https://flowbite.com/figma/" className="text-cyan-600 hover:underline dark:text-cyan-500">
-            Figma design system
-          </a>
-          based on the utility classes from Tailwind CSS and components from Flowbite.
+        We offer a free plan with basic features. We are coming with premium plans with various features in future.
         </p>
       </Accordion.Content>
     </Accordion.Panel>
+
     <Accordion.Panel>
-      <Accordion.Title>What are the differences between Flowbite and Tailwind UI?</Accordion.Title>
+      <Accordion.Title>Do I need to download any software?</Accordion.Title>
       <Accordion.Content>
         <p className="mb-2 text-gray-500 dark:text-gray-400">
-          The main difference is that the core components from Flowbite are open source under the MIT license, whereas
-          Tailwind UI is a paid product. Another difference is that Flowbite relies on smaller and standalone
-          components, whereas Tailwind UI offers sections of pages.
+        No, Track My Jobs is a web-based platform, so you can access it from any device with an internet connection.
         </p>
-        <p className="mb-2 text-gray-500 dark:text-gray-400">
-          However, we actually recommend using both Flowbite, Flowbite Pro, and even Tailwind UI as there is no
-          technical reason stopping you from using the best of two worlds.
-        </p>
-        <p className="mb-2 text-gray-500 dark:text-gray-400">Learn more about these technologies:</p>
-        <ul className="list-disc pl-5 text-gray-500 dark:text-gray-400">
-          <li>
-            <a href="https://flowbite.com/pro/" className="text-cyan-600 hover:underline dark:text-cyan-500">
-              Flowbite Pro
-            </a>
-          </li>
-          <li>
-            <a
-              href="https://tailwindui.com/"
-              rel="nofollow"
-              className="text-cyan-600 hover:underline dark:text-cyan-500"
-            >
-              Tailwind UI
-            </a>
-          </li>
-        </ul>
       </Accordion.Content>
     </Accordion.Panel>
+
+    <Accordion.Panel>
+      <Accordion.Title>How can I contact support?</Accordion.Title>
+      <Accordion.Content>
+        <p className="mb-2 text-gray-500 dark:text-gray-400">
+        You can reach our support team by email or social links. Contact information is available on our website. Social links are available at the bottom of website.
+        </p>
+      </Accordion.Content>
+    </Accordion.Panel>
+
+    <Accordion.Panel>
+      <Accordion.Title>What are your future plans for Track My Jobs?</Accordion.Title>
+      <Accordion.Content>
+        <p className="mb-2 text-gray-500 dark:text-gray-400">
+        We are constantly working on adding new features and improvements to make your job search even easier. Subscribe us for all new updates and features.
+        </p>
+      </Accordion.Content>
+    </Accordion.Panel>
+
+
+
   </Accordion>
     </div>
   )

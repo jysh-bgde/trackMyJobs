@@ -1,7 +1,11 @@
-import { Card } from 'flowbite-react'
-import React from 'react'
+import { Button, Card } from 'flowbite-react'
+import React, { useContext } from 'react'
+import UserContext from '../../context/UserContext';
+import { Link } from 'react-router-dom';
 
 const FreeCard = () => {
+
+  const {user} = useContext(UserContext)
   // return (
     
   //   <Card className="max-w-sm my-3">
@@ -25,7 +29,7 @@ const FreeCard = () => {
   // </Card>
   // )
   return (
-    <Card className='flex-1'>
+    <Card className='flex-1 h-full'>
       <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">Free plan</h5>
       <div className="flex items-baseline text-gray-900 dark:text-white">
         <span className="text-3xl font-semibold">$</span>
@@ -126,6 +130,16 @@ const FreeCard = () => {
         </li>
        
       </ul>
+      <div className="flex justify-center gap-1">
+        {
+            user ? ("") :(
+            <>
+            <Button className='mx-2' color="success"> <Link to="/login" >Login</Link></Button>
+        <Button outline color='success'><Link to="/register" >Register</Link></Button>
+            </>)
+        }
+        
+        </div>
       
     </Card>
   );

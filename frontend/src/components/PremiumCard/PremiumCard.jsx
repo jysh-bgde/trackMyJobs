@@ -1,17 +1,17 @@
-import { Card } from 'flowbite-react'
+import { Button, Card, Label, TextInput } from 'flowbite-react'
 import React from 'react'
 
 const PremiumCard = () => {
   return (
    
-    <Card className='flex-1'>
+    <Card className='flex-1 h-full'>
     <h5 className="mb-4 text-xl font-medium text-gray-500 dark:text-gray-400">Premium plan</h5>
     <div className="flex items-baseline text-gray-900 dark:text-white">
       <span className="text-3xl font-semibold">$</span>
       <span className="text-5xl font-extrabold tracking-tight">5</span>
       <span className="ml-1 text-xl font-normal text-gray-500 dark:text-gray-400">/month</span>
     </div>
-    <ul className="my-7 space-y-5">
+    <ul className="my-1 space-y-5">
       <li className="flex space-x-3">
         <svg
           className="h-5 w-5 shrink-0 text-green-600 dark:text-green-500"
@@ -106,7 +106,20 @@ const PremiumCard = () => {
       </li>
      
     </ul>
-    
+    <div className='bg-white dark:bg-gray-800'>
+      
+      <form action="https://api.web3forms.com/submit" method="post">
+              
+              <input type="hidden" name="access_key" value="d2718fbf-a525-490a-8439-badbc4a2951e"/>
+              <input type="hidden" name="subject" value="New premium submission "/>
+              <input type="hidden" name="redirect" value="https://web3forms.com/success?title=Added%20to%20premium%20waitlist&desc=Thank%20you!You%20have%20been%20added%20to%20premium%20wait%20list"/>
+              <input type="hidden" name="from_name" value="Track My Jobs"></input>
+              <input type="checkbox" name="botcheck" id="" className='hidden' style={{display: 'none'}}/>
+      {/* <Label htmlFor="premium" className=''>Enter email if interested in premium</Label> */}
+      <TextInput id="premium" name='premium' type="email" placeholder="Enter email if interested in premium" className='mb-1' required autoComplete='off'/>
+      <Button color="success" className='w-full' type='submit'>Submit</Button>
+      </form>
+    </div>
   </Card>
   )
 }
